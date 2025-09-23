@@ -15,3 +15,68 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
 /*
     Add your custom styles here
 */
+
+.pageWidth {
+  width: 100%;
+  padding: 15px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: var(--Black, #32302f);
+  text-align: center;
+  font-family: "Albra Book TRIAL";
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+h2 {
+  color: var(--Black, #32302f);
+  text-align: center;
+  font-feature-settings: "salt" on;
+  font-family: "Albra Book TRIAL";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+p.text {
+  color: var(--Text-color, #5c5c5c);
+  text-align: center;
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+a .mainButton {
+  display: flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-align: center;
+  font-family: "Albra Book TRIAL";
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  background: var(--Accent-color, #a67131);
+}
+
+@media (min-width: 768px) {
+  .pageWidth {
+    padding: 25px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .pageWidth {
+    padding: 25px 10%;
+  }
+}
