@@ -16,11 +16,75 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
     Add your custom styles here
 */
 
+@font-face {
+  font-family: "Albra Book TRIAL TRIAL";
+  src: url("./fonts/AlbraBookTRIAL-Regular.woff2") format("woff2"),
+    url("./fonts/AlbraBookTRIAL-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Albra Book TRIAL Semi TRIAL";
+  src: url("./fonts/AlbraBookTRIAL-Semi.woff2") format("woff2"),
+    url("./fonts/AlbraBookTRIAL-Semi.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Albra Book TRIAL Light TRIAL";
+  src: url("./fonts/AlbraBookTRIAL-Light.woff2") format("woff2"),
+    url("./fonts/AlbraBookTRIAL-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Albra Book TRIAL Black TRIAL";
+  src: url("./fonts/AlbraBookTRIAL-Black.woff2") format("woff2"),
+    url("./fonts/AlbraBookTRIAL-Black.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Albra Book TRIAL Medium TRIAL";
+  src: url("./fonts/AlbraBookTRIAL-Medium.woff2") format("woff2"),
+    url("./fonts/AlbraBookTRIAL-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Albra Book TRIAL Bold TRIAL";
+  src: url("./fonts/AlbraBookTRIAL-Bold.woff2") format("woff2"),
+    url("./fonts/AlbraBookTRIAL-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 .pageWidth {
   width: 100%;
   padding: 15px;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 h1 {
@@ -54,19 +118,50 @@ p.text {
   line-height: 120%;
 }
 
-a .mainButton {
+a {
+  font-family: "Albra Book TRIAL";
+}
+
+a.mainButton {
   display: flex;
-  padding: 16px 32px;
+  padding: 15px 30px !important;
   justify-content: center;
   align-items: center;
   gap: 10px;
   color: #fff;
   text-align: center;
-  font-family: "Albra Book TRIAL";
   font-size: 16px;
   font-weight: 500;
   border-radius: 12px;
+  border: 1px solid #a67131;
   background: var(--Accent-color, #a67131);
+  transition: all 0.3s ease;
+}
+
+a.mainButton:hover {
+  background: transparent;
+  color: #a67131;
+}
+
+a.secondaryButton {
+  display: flex;
+  padding: 15px 30px !important;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #4d4337;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 1.5px solid #d3d3d3;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+a.secondaryButton:hover {
+  background: var(--Light-Grey, #f5f5f5);
+  color: #4d4337;
 }
 
 @media (min-width: 768px) {

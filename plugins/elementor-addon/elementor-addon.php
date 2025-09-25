@@ -13,7 +13,11 @@ function register_hello_world_widget($widgets_manager)
 {
 
     require_once(__DIR__ . '/widgets/switchSideImage.php');
+    require_once(__DIR__ . '/widgets/ImageGallerySection.php');
+    require_once(__DIR__ . '/widgets/GslTabsSection.php');
 
     $widgets_manager->register(new \Elementor_switchSideImage());
+    $widgets_manager->register(new \Elementor_ImageGallerySection());
+    $widgets_manager->register(new \Elementor_GslTabsSection());
 }
 add_action('elementor/widgets/register', 'register_hello_world_widget');
