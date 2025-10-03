@@ -226,6 +226,7 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
     {
         $settings = $this->get_settings_for_display();
 ?>
+
         <style>
             .gsl-tabs-section {
                 text-align: center;
@@ -237,8 +238,8 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 align-items: center;
                 gap: 10px;
                 max-width: 900px;
-                margin: 0 auto;
-                margin-bottom: 2px;
+                margin: 0 auto 50px;
+                text-align: center;
             }
 
             .gsl-tabs-menu {
@@ -247,6 +248,7 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 width: 100%;
                 margin-bottom: 1.5rem;
                 border-bottom: 1px solid #e5e5e5;
+                overflow-x: hidden;
             }
 
             .gsl-tab-menu-item {
@@ -258,6 +260,8 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 transition: color 0.3s ease;
                 flex: 1;
                 text-align: center;
+                white-space: nowrap;
+                font-size: initial;
             }
 
             .gsl-tab-menu-item:after {
@@ -286,7 +290,6 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
 
             .gsl-tab-content-item {
                 display: none;
-                position: relative;
                 width: 100%;
                 transition: opacity 0.5s ease-in-out;
             }
@@ -313,29 +316,31 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
                 max-width: 350px;
                 text-align: left;
+                margin: 0;
             }
 
             .gsl-info-box-header {
                 display: flex;
-                gap: 0.5rem;
+                gap: 10px;
                 margin-bottom: 1rem;
-                flex-direction: column;
+                flex-direction: row;
+                align-items: center;
             }
 
             .gsl-info-box-icon-wrapper {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                flex-shrink: 0;
                 width: 40px;
                 height: 40px;
                 background-color: #4D4337;
                 border-radius: 50%;
-                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .gsl-info-box-icon {
                 color: white;
-                font-size: 1.5rem;
+                font-size: 1.25rem;
             }
 
             .gsl-info-box h3 {
@@ -349,6 +354,7 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 padding: 0;
                 margin: 0;
                 line-height: 1.6;
+                font-size: initial;
             }
 
             .gsl-info-box li:before {
@@ -372,6 +378,63 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
 
             .gsl-info-box-link:hover {
                 opacity: 0.8;
+            }
+
+            @media (max-width: 768px) {
+                .gsl-tabs-section {
+                    padding: 0 15px;
+                }
+
+                .gsl-heading-wrapper {
+                    margin-bottom: 30px;
+                }
+
+                .gsl-tabs-menu {
+                    justify-content: flex-start;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+
+                .gsl-tab-menu-item {
+                    padding: 1rem 15px;
+                    flex-shrink: 0;
+                    flex: initial;
+                    font-size: 14px;
+                }
+
+                .gsl-tab-content-item {
+                    display: none;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+
+                .gsl-tab-content-item.active {
+                    display: flex;
+                }
+
+                .gsl-tab-image {
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                }
+
+                .gsl-info-box {
+                    position: static;
+                    background-color: #ffffff;
+                    box-shadow: none;
+                    max-width: 100%;
+                }
+
+                .gsl-info-box-icon-wrapper {
+                    width: 35px;
+                    height: 35px;
+                }
+
+                .gsl-info-box h3 {
+                    font-size: 1.1rem;
+                }
+
+                .gsl-info-box ul {
+                    font-size: 14px;
+                }
             }
         </style>
 
