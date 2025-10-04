@@ -384,10 +384,6 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                     padding: 0 15px;
                 }
 
-                .gsl-heading-wrapper {
-                    margin-bottom: 30px;
-                }
-
                 .gsl-tabs-menu {
                     justify-content: flex-start;
                     overflow-x: auto;
