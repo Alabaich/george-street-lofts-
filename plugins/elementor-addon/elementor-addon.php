@@ -17,11 +17,17 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/GslTabsSection.php');
     require_once(__DIR__ . '/widgets/NeighbourhoodSection.php');
     require_once(__DIR__ . '/widgets/FloorPlanSection.php');
+    require_once(__DIR__ . '/widgets/atriaDevelopmentSection.php');
+    require_once(__DIR__ . '/widgets/landAcknowledgementSection.php');
+    require_once(__DIR__ . '/widgets/testimonialsSection.php');
 
     $widgets_manager->register(new \Elementor_switchSideImage());
     $widgets_manager->register(new \Elementor_ImageGallerySection());
     $widgets_manager->register(new \Elementor_GslTabsSection());
     $widgets_manager->register(new \Elementor_NeighbourhoodSection());
     $widgets_manager->register(new \Elementor_FloorPlanSection());
+    $widgets_manager->register(new \Elementor_AtriaDevelopmentSection());
+    $widgets_manager->register(new \Elementor_LandAcknowledgementSection());
+    $widgets_manager->register(new \Elementor_TestimonialsSection());
 }
 add_action('elementor/widgets/register', 'register_hello_world_widget');

@@ -238,7 +238,6 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 align-items: center;
                 gap: 10px;
                 max-width: 900px;
-                margin: 0 auto 50px;
                 text-align: center;
             }
 
