@@ -153,6 +153,9 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
         <style>
             .gsl-gallery-section {
                 text-align: center;
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
             }
 
             .gsl-heading-wrapper {

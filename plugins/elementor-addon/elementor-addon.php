@@ -21,6 +21,7 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/landAcknowledgementSection.php');
     require_once(__DIR__ . '/widgets/testimonialsSection.php');
     require_once(__DIR__ . '/widgets/advantagesSection.php');
+    require_once(__DIR__ . '/widgets/blogShowcase.php');
 
     $widgets_manager->register(new \Elementor_switchSideImage());
     $widgets_manager->register(new \Elementor_ImageGallerySection());
@@ -31,5 +32,6 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_LandAcknowledgementSection());
     $widgets_manager->register(new \Elementor_TestimonialsSection());
     $widgets_manager->register(new \Elementor_AdvantagesSection());
+    $widgets_manager->register(new \Elementor_BlogShowcase());
 }
 add_action('elementor/widgets/register', 'register_hello_world_widget');
