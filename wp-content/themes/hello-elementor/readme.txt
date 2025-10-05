@@ -2,9 +2,9 @@
 
 Contributors: elemntor, KingYes, ariel.k, bainternet
 Requires at least: 6.0
-Tested up to: 6.7
-Stable tag: 3.2.1
-Version: 3.2.1
+Tested up to: 6.8
+Stable tag: 3.4.4
+Version: 3.4.4
 Requires PHP: 7.4
 License: GNU General Public License v3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -35,6 +35,30 @@ License: CC0 1.0 Universal (CC0 1.0)
 Source: https://stocksnap.io/photo/4B83RD7BV9
 
 == Changelog ==
+
+= 3.4.4 - 2025-06-08 =
+* Tweak: Improve Header/Footer edit access from theme Home
+
+= 3.4.3 - 2025-05-26 =
+* Fix: Settings page empty after 3.4.0 in translated sites
+* Fix: PHP 8.4 deprecation notice
+
+= 3.4.2 - 2025-05-19 =
+* Tweak: Set Home links font weight to regular
+* Tweak: Dart SASS 3.0.0 - resolve scss deprecated warnings
+* Fix: Settings page empty after 3.4.0
+
+= 3.4.1 - 2025-05-08 =
+* Fix: Critical Error after theme update [critical-error-on-website-54/#post-18454740](https://wordpress.org/support/topic/critical-error-on-website-54/#post-18454740)
+
+= 3.4.0 - 2025-05-05 =
+* New: Add Theme Home
+* Tweak: Theme settings page style
+
+= 3.3.0 - 2025-01-21 =
+* Tweak: Added changelog link in theme settings
+* Tweak: Updated minimum required Safari version to 15.5
+* Tweak: Update autoprefixer to latest versions
 
 = 3.2.1 - 2024-12-16 =
 * Fix: Gutenberg editor expanded disproportionately after adding support for `theme.json` ([#430](https://github.com/elementor/hello-theme/issues/430))
