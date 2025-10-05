@@ -136,18 +136,11 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
             }
 
             .switchSideImage img {
-            .heroSection.reverse-order {
-                flex-direction: row-reverse;
-            }
-
-            .heroSection img {
                 width: 50%;
                 max-width: 100%;
                 height: 80vh;
                 max-height: 100%;;
                 object-fit: contain;
-                height: 65vh;
-                object-fit: cover;
             }
 
             .switchSideImage img.left {
@@ -226,7 +219,6 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
             }
 
             .switchSideImage .buttonBlueBg {
-            .heroText p a {
                 color: #2c2d2c;
                 text-decoration: underline;
             }
@@ -288,8 +280,6 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                                 }
                                 ?> pageWidth">
             <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="" class="left">
-        <div class="heroSection <?php echo $positionClass; ?> pageWidth">
-
             <div class="heroText">
                 <h2 style="text-align: left;">
                     <?php echo $settings['title']; ?>
@@ -299,8 +289,6 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 </div>
                 <?php if (!empty($settings['url'])) {
                 ?>
-                    <div class="buttonHeroSection ">
-                        <a class="customButton" href="<?php echo esc_url($settings['url']); ?>">
                     <div class="buttonHeroSection">
                         <a class="mainButton" href="<?php echo esc_url($settings['url']); ?>">
                             <?php echo esc_html($settings['textForButton']); ?>
