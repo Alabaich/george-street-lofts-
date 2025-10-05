@@ -27,6 +27,8 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/3DSuiteViewer.php');
     require_once(__DIR__ . '/widgets/hotspotViewer.php');
     require_once(__DIR__ . '/widgets/awards.php');
+    require_once(__DIR__ . '/widgets/splitHeroSection.php');
+    require_once(__DIR__ . '/widgets/horizontalAutoCarousel.php');
 
     $widgets_manager->register(new \Elementor_switchSideImage());
     $widgets_manager->register(new \Elementor_ImageGallerySection());
@@ -43,5 +45,7 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_3DSuiteViewer());
     $widgets_manager->register(new \Elementor_HotspotViewer());
     $widgets_manager->register(new \Elementor_AwardsAndRecognition());
+    $widgets_manager->register(new \Elementor_SplitHeroSection());
+    $widgets_manager->register(new \Elementor_HorizontalAutoCarousel());
 }
 add_action('elementor/widgets/register', 'register_hello_world_widget');

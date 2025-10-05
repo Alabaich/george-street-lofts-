@@ -290,7 +290,7 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 <?php if (!empty($settings['url'])) {
                 ?>
                     <div class="buttonHeroSection">
-                        <a class="mainButton" href="<?php echo esc_url($settings['url']); ?>">
+                        <a class="customButton" href="<?php echo esc_url($settings['url']); ?>">
                             <?php echo esc_html($settings['textForButton']); ?>
                         </a>
                     </div>
