@@ -16,6 +16,11 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
     Add your custom styles here
 */
 
+:root {
+  --Accent-color: #A67131;
+  /* A blue color */
+}
+
 @font-face {
   font-family: "Albra Book TRIAL TRIAL";
   src: url("./fonts/AlbraBookTRIAL-Regular.woff2") format("woff2"),
@@ -174,4 +179,28 @@ a.secondaryButton:hover {
   .pageWidth {
     padding: 25px 10%;
   }
+}
+
+.customButton {
+  display: flex;
+  height: 50px;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  background: var(--Accent-color, #A67131);
+  color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.customButton:hover {
+    color: #fff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.customButton:active {
+    color: #fff;
+  background: #99682C;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25) inset, 0 0 0 0 rgba(0, 0, 0, 0.25);
 }
