@@ -41,6 +41,14 @@ class Elementor_AboutUsHero extends \Elementor\Widget_Base
             ]
         );
 
+                $this->add_control(
+            'upperTitle',
+            [
+                'label' => esc_html__('upperTitle', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+            ]
+        );
+
         $this->add_control(
             'title',
             [
@@ -162,6 +170,9 @@ class Elementor_AboutUsHero extends \Elementor\Widget_Base
         <div class="aboutUsHeroContainer pageWidth"
             style="background-image: url(<?php echo esc_url($settings['image']['url']); ?>); ">
             <div class="heroText">
+                                <p>
+                    <?php echo $settings['upperTitle']; ?>
+                </p>
                 <h1>
                     <?php echo $settings['title']; ?>
                 </h1>
