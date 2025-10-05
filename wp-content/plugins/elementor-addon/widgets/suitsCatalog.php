@@ -190,6 +190,22 @@ class Elementor_SuitesCatalog extends \Elementor\Widget_Base
                 transform: scale(1.05);
             }
 
+            .card-background::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+                transition: background-color 0.3s ease;
+            }
+
+            .catalog-card:hover .card-background::before {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+
             .card-overlay {
                 position: absolute;
                 top: 0;
