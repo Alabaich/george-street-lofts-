@@ -382,7 +382,6 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                 width: 100%;
                 height: 100%;
                 border-radius: 8px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             }
 
             .hotdots .gsl-hotspot-image {
@@ -503,7 +502,7 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                 .hotdots .gsl-hotspot-tabs {
                     padding: 6px;
                     gap: 2px;
-                    width: 100%;
+                    width: fit-content;
                     overflow-x: auto;
                     justify-content: flex-start;
                 }

@@ -31,8 +31,6 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
     protected function register_controls()
     {
 
-        // Content Tab Start
-
         $this->start_controls_section(
             'section_title',
             [
@@ -75,7 +73,7 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::SWITCHER,
                 'label_on' => esc_html__('Right', 'elementor-addon'),
                 'label_off' => esc_html__('Left', 'elementor-addon'),
-                'default' => 'left',
+                'default' => '',
             ]
         );
 
@@ -100,10 +98,6 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        // Content Tab End
-
-        // Style Tab Start
-
         $this->start_controls_section(
             'section_title_style',
             [
@@ -118,173 +112,47 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 'label' => esc_html__('Text Color', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .hello-world' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .heroText h2' => 'color: {{VALUE}};',
                 ],
             ]
         );
 
-
-
         $this->end_controls_section();
-
-        // Style Tab End
-
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+
+        $positionClass = ('yes' === $settings['switch_position']) ? 'reverse-order' : 'default-order';
 ?>
-
-
         <style>
             .heroSection {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
-                height: 80vh !important;
+                min-height: 80vh;
             }
 
-            .left {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+            .heroSection.reverse-order {
+                flex-direction: row-reverse;
             }
 
             .heroSection img {
                 width: 50%;
-                height: 80vh;
+                height: 65vh;
                 object-fit: cover;
-            }
-
-            .heroSection img.left {
-                display: none;
-            }
-
-            .heroSection.left img.left {
-                display: block;
-                height: 80vh;
-            }
-
-            .heroSection.left img.right {
-                display: none;
             }
 
             .heroText {
                 display: flex;
                 justify-content: center;
-                align-items: start;
+                align-items: flex-start;
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
                 padding: 25px;
                 max-width: calc(50% - 25px);
-            }
-
-            .heroText h1 {
-                color: var(--black);
-                font-size: 3.5rem;
-                font-weight: 300;
-                line-height: 3.5rem;
-            }
-
-            .heroText p {
-                color: var(--black);
-                font-size: 1.25rem;
-                font-weight: 300;
-            }
-
-            .heroSectionTwo {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 25px;
-                padding: 0 25px;
-                height: 80vh;
-            }
-
-            .rightImage .leftImageInner {
-                display: none;
-            }
-
-            .leftImage .rightImageInner {
-                display: none;
-            }
-
-            .buttonHeroSection {
-                display: block;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                outline: none;
-                gap: 0.625rem;
-                background: var(--blueLight);
-                box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-                color: #fff;
-                font-weight: 400;
-                padding: 10px;
-                border-radius: 15px;
-                transition: all linear 300ms;
-            }
-
-            .buttonHeroSection:hover {
-                box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
-                background: var(--blueDark);
-            }
-
-            .heroSectionTwo h1 {
-                color: #010626;
-                font-size: 3rem;
-                font-weight: 700;
-                line-height: 3rem;
-            }
-
-            .buttonsBlueBg {
-                display: flex;
-                align-items: center;
-                align-content: center;
-                gap: 25px;
-            }
-
-            .buttonBlueBg {
-                display: flex;
-                padding: 0.3125rem 0.625rem;
-                justify-content: center;
-                align-items: center;
-                gap: 0.3125rem;
-                border-radius: 0.9375rem;
-                background: rgba(5, 108, 242, 0.10);
-                color: #103894;
-                font-size: 1.125rem;
-                font-weight: 500;
-                transition: all linear 300ms;
-            }
-
-            .buttonBlueBg:hover svg path {
-                background: var(--blueLight);
-                color: #fff;
-                fill: #fff;
-            }
-
-            .heroSection.left img.right,
-            .heroSection.right img.right {
-                display: block;
-            }
-
-            .heroSection.left img.left,
-            .heroSection.right img.left {
-                display: none;
-            }
-
-            .heroSection .buttonBlueBg {
-                outline: none;
-                box-sizing: none;
-                font-size: 1.2rem;
-                font-weight: 400;
-                text-align: center;
-                display: block;
-                width: max-content;
-                color: #fff;
             }
 
             .heroText p a {
@@ -292,64 +160,63 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 text-decoration: underline;
             }
 
-            @media screen and (max-width: 600px) {
+            .mainButton {
+                outline: none;
+                box-sizing: none;
+                font-size: 1.2rem;
+                font-weight: 400;
+                text-align: center;
+                display: inline-block;
+                width: max-content;
+                color: #fff;
+                padding: 10px 20px;
+                background-color: #007bff;
+                text-decoration: none;
+                border-radius: 5px;
+            }
 
-                .heroSection {
+            .mainButton:hover {
+                box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+                background-color: #0056b3;
+            }
+
+            @media screen and (max-width: 767px) {
+
+                .heroSection,
+                .heroSection.reverse-order {
                     flex-direction: column;
-                    height: auto !important;
-                    padding: 10px !important;
-                    gap: 10% !important;
+                    min-height: auto;
+                    padding: 10px;
+                    gap: 20px;
                 }
 
                 .heroSection img {
-                    width: 100% !important;
-                    height: auto !important;
+                    width: 100%;
+                    height: auto;
                 }
 
                 .heroText {
-                    padding: 0px 10px !important;
-                    width: 100% !important;
-                    max-width: 100% !important;
-                }
-
-                .heroText h1 {
-                    font-size: 2.25rem;
-                    text-align: center;
-                    line-height: normal;
-                    font-weight: 500;
-                }
-
-                .heroText p {
-                    font-size: 1.1rem;
-                    font-weight: 300;
-                }
-
-                .heroText {
-                    align-items: center;
+                    padding: 0;
+                    width: 100%;
+                    max-width: 100%;
                 }
             }
         </style>
 
 
-        <div class="heroSection <?php
-                                if ('yes' === $settings['switch_position']) {
-                                    echo 'right';
-                                } else {
-                                    echo 'left';
-                                }
-                                ?> pageWidth">
-            <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="" class="left">
+        <div class="heroSection <?php echo $positionClass; ?> pageWidth">
+
             <div class="heroText">
-                <h1>
+                <h2 style="text-align: left;">
                     <?php echo $settings['title']; ?>
-                </h1>
-                <p>
+                </h2>
+                <div class="text">
                     <?php echo $settings['text']; ?>
-                </p>
-                <?php if ($settings['url'] != "") {
+                </div>
+                <?php if (!empty($settings['url'])) {
                 ?>
                     <div class="buttonHeroSection">
-                        <a class="buttonBlueBg" href="<?php echo esc_url($settings['url']); ?>">
+                        <a class="mainButton" href="<?php echo esc_url($settings['url']); ?>">
                             <?php echo esc_html($settings['textForButton']); ?>
                         </a>
                     </div>
@@ -357,7 +224,9 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 }
                 ?>
             </div>
-            <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="" class="right">
+
+            <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="">
+
         </div>
 <?php
     }

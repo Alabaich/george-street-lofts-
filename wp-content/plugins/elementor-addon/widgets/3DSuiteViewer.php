@@ -130,7 +130,6 @@ class Elementor_3DSuiteViewer extends \Elementor\Widget_Base
                 ],
             ]
         );
-        // КОНЕЦ НОВОГО КОНТРОЛА
 
         $this->add_control(
             'card_title_color',
@@ -260,12 +259,38 @@ class Elementor_3DSuiteViewer extends \Elementor\Widget_Base
         }
 
         @media (max-width: 767px) {
+        {{WRAPPER}} {
+        overflow: auto !important;
+        }
+
+        {{WRAPPER}} .gsl-suite-viewer-section {
+        margin-bottom: 150px !important;
+        gap: 30px;
+        }
+
         {{WRAPPER}} .gsl-unit-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
         }
 
         {{WRAPPER}} .gsl-viewer-catalog-title {
-        font-size: 30px;
+        font-size: 24px;
+        }
+
+        {{WRAPPER}} .gsl-unit-card-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+        }
+
+        {{WRAPPER}} .gsl-play-icon-circle {
+        width: 50px;
+        height: 50px;
+        }
+        }
+
+        @media (max-width: 480px) {
+        {{WRAPPER}} .gsl-unit-grid {
+        grid-template-columns: repeat(2, 1fr);
         }
         }
         </style>
