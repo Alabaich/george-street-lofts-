@@ -109,6 +109,30 @@ class Elementor_3DSuiteViewer extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'card_max_height',
+            [
+                'label' => esc_html__('Card Max Height (px)', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 200,
+                        'max' => 800,
+                        'step' => 10,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 450,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .gsl-unit-card' => 'max-height: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        // КОНЕЦ НОВОГО КОНТРОЛА
+
+        $this->add_control(
             'card_title_color',
             [
                 'label' => esc_html__('Title Color', 'elementor-addon'),
@@ -159,7 +183,7 @@ class Elementor_3DSuiteViewer extends \Elementor\Widget_Base
         overflow: hidden;
         border-radius: 8px;
         display: block;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 16 / 9;
         text-decoration: none;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
@@ -182,19 +206,16 @@ class Elementor_3DSuiteViewer extends \Elementor\Widget_Base
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 60%);
+        background-color: rgba(0, 0, 0, 0.4);
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         padding: 20px;
         }
 
         {{WRAPPER}} .gsl-play-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        position: relative;
         z-index: 10;
         cursor: pointer;
         opacity: 0.9;
@@ -231,12 +252,9 @@ class Elementor_3DSuiteViewer extends \Elementor\Widget_Base
         font-size: 20px;
         font-weight: 500;
         line-height: 1.4;
-        text-align: left;
-        width: 100%;
-        align-self: flex-start;
-        position: absolute;
-        top: 20px;
-        left: 20px;
+        text-align: center;
+        position: relative;
+        margin-bottom: 15px;
         z-index: 10;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
@@ -266,13 +284,16 @@ class Elementor_3DSuiteViewer extends \Elementor\Widget_Base
 
                         echo '<a href="' . $link_url . '" class="gsl-unit-card" ' . $target . $nofollow . '>';
                         echo '<div class="gsl-unit-image-poster" style="background-image: url(' . $image_url . ');"></div>';
-                        echo '<div class="gsl-card-overlay"></div>';
+
+                        echo '<div class="gsl-card-overlay">';
+                        echo '<h3 class="gsl-unit-card-title">' . esc_html($card['unit_title']) . '</h3>';
                         echo '<div class="gsl-play-icon">';
                         echo '<div class="gsl-play-icon-circle">';
                         echo '<div class="gsl-play-icon-triangle"></div>';
                         echo '</div>';
                         echo '</div>';
-                        echo '<h3 class="gsl-unit-card-title">' . esc_html($card['unit_title']) . '</h3>';
+                        echo '</div>';
+
                         echo '</a>';
                     }
                 }
