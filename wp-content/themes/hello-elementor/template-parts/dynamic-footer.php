@@ -14,7 +14,7 @@
 
 		.footer-container {
 			display: flex;
-			gap: 10rem;
+			gap: 20rem;
 			padding: 4rem 0;
 			font-family: Arial;
 		}
