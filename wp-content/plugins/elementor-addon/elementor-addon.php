@@ -31,9 +31,11 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/horizontalAutoCarousel.php');
     require_once(__DIR__ . '/widgets/switchSideDropdowns.php');
     require_once(__DIR__ . '/widgets/imagesTabs.php');
-    require_once(__DIR__ . '/widgets/gallerySlider.php');
-    require_once(__DIR__ . '/widgets/contactUsPageForm.php');
-    require_once(__DIR__ . '/widgets/secondGallerySlider.php');
+    require_once(__DIR__ . '/widgets/featuresSlider.php');
+     require_once(__DIR__ . '/widgets/gallerySlider.php');
+     require_once(__DIR__ . '/widgets/contactUsPageForm.php');
+     require_once(__DIR__ . '/widgets/secondGallerySlider.php');
+     require_once(__DIR__ . '/widgets/GalleryGrid.php');
 
     $widgets_manager->register(new \Elementor_switchSideImage());
     $widgets_manager->register(new \Elementor_ImageGallerySection());
@@ -55,10 +57,9 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_SwitchSideDropdowns());
     $widgets_manager->register(new \Elementor_ImagesTabs());
     $widgets_manager->register(new \Elementor_Features_Slider());
-    $widgets_manager->register(new \Elementor_GallerySlider());
-    $widgets_manager->register(new \Elementor_ContactUsPageForm());
-    $widgets_manager->register(new \Elementor_GalleryGrid());
-    $widgets_manager->register(new \Elementor_SecondGallerySlider());
-    
+     $widgets_manager->register(new \Elementor_GallerySlider());
+     $widgets_manager->register(new \Elementor_ContactUsPageForm());
+     $widgets_manager->register(new \Elementor_GalleryGrid());
+     $widgets_manager->register(new \Elementor_SecondGallerySlider());
 }
 add_action('elementor/widgets/register', 'register_hello_world_widget');
