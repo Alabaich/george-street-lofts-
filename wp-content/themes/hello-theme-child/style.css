@@ -18,7 +18,7 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
 
 :root {
   --Accent-color: #A67131;
-  /* A blue color */
+  --Brown-bg: #4D4337;
 }
 
 @font-face {
