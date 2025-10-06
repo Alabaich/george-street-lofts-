@@ -55,7 +55,7 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 'default' => esc_html__('The three-storey French Second Empire-style property features spacious, meticulously designed suites just steps from the city\'s vibrant attractions.', 'elementor-addon'),
             ]
         );
-        
+
         // New Controls for the Button
         $this->add_control(
             'gsl_section_button_text',
@@ -422,15 +422,16 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                     padding: 0 15px;
                     gap: 30px;
                 }
-                
+
                 .gsl-button-wrapper {
-                    padding: 0 15px; 
+                    padding: 0 15px;
                 }
 
                 .gsl-tabs-menu {
                     justify-content: flex-start;
                     overflow-x: auto;
                     -webkit-overflow-scrolling: touch;
+                    overflow-y: hidden;
                 }
 
                 .gsl-tab-menu-item {
@@ -520,7 +521,7 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                     </div>
                 <?php endforeach; ?>
             </div>
-            
+
             <?php if ($settings['gsl_section_button_text'] && $settings['gsl_section_button_url']['url']) : ?>
                 <div class="gsl-button-wrapper">
                     <a href="<?php echo esc_url($settings['gsl_section_button_url']['url']); ?>"
