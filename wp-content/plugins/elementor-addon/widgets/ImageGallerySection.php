@@ -30,7 +30,6 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
 
     protected function register_controls()
     {
-        // Content Tab Start
         $this->start_controls_section(
             'section_content',
             [
@@ -93,46 +92,19 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
             ]
         );
 
-        $this->add_control(
-            'image_1',
-            [
-                'label' => esc_html__('Image 1', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => ['url' => 'https://placehold.co/400x500/A87F58/FFF'],
-            ]
-        );
-
-        $this->add_control(
-            'image_2',
-            [
-                'label' => esc_html__('Image 2', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => ['url' => 'https://placehold.co/400x500/A87F58/FFF'],
-            ]
-        );
-
-        $this->add_control(
-            'image_3',
-            [
-                'label' => esc_html__('Image 3', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => ['url' => 'https://placehold.co/400x500/A87F58/FFF'],
-            ]
-        );
-
-        $this->add_control(
-            'image_4',
-            [
-                'label' => esc_html__('Image 4', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::MEDIA,
-                'default' => ['url' => 'https://placehold.co/400x500/A87F58/FFF'],
-            ]
-        );
+        for ($i = 1; $i <= 8; $i++) {
+            $this->add_control(
+                'image_' . $i,
+                [
+                    'label' => esc_html__('Image ' . $i, 'elementor-addon'),
+                    'type' => \Elementor\Controls_Manager::MEDIA,
+                    'default' => ['url' => 'https://placehold.co/400x500/A87F58/FFF'],
+                ]
+            );
+        }
 
         $this->end_controls_section();
-        // End of Content Tab
 
-        // Style Tab Start
         $this->start_controls_section(
             'section_style',
             [
@@ -142,13 +114,29 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
-        // End of Style Tab
 
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        
+        $available_images = [];
+        for ($i = 1; $i <= 8; $i++) {
+            $image_key = 'image_' . $i;
+            if (!empty($settings[$image_key]['url'])) {
+                $available_images[] = $settings[$image_key]['url'];
+            }
+        }
+        
+        while (count($available_images) < 4) {
+            $available_images[] = 'https://placehold.co/400x500/A87F58/FFF';
+        }
+        
+        $unique_images = array_unique($available_images);
+        shuffle($unique_images);
+        $initial_images = array_slice($unique_images, 0, 4);
+
 ?>
         <style>
             .gsl-gallery-section {
@@ -196,24 +184,40 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
                 }
             }
 
-            .gallery img {
+            .gallery-item {
+                position: relative;
                 width: 100%;
-                height: auto;
                 border-radius: 0.75rem;
                 box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-                object-fit: cover;
-                transition: opacity 0.5s ease-in-out;
-            }
-
-            .gallery img.faded {
-                opacity: 0;
+                overflow: hidden;
             }
 
             @media (min-width: 768px) {
+                .gallery-item:nth-child(1),
+                .gallery-item:nth-child(4) {
+                    height: 400px;
+                }
+                .gallery-item:nth-child(2),
+                .gallery-item:nth-child(3) {
+                    height: 370px;
+                }
+            }
 
-                .gallery img:nth-child(2),
-                .gallery img:nth-child(3) {
-                    height: calc(100% - 15px);
+            .gallery-image {
+                width: 100%;
+                height: 100% !important;
+                object-fit: cover;
+                object-position: center;
+                transition: opacity 0.5s ease-in-out;
+            }
+
+            .gallery-image.faded {
+                opacity: 0;
+            }
+
+            @media (max-width: 767px) {
+                .gallery-item {
+                    height: 250px;
                 }
             }
         </style>
@@ -239,36 +243,60 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
             </div>
 
             <div class="gallery" id="image-gallery">
-                <img class="gallery-image" src="<?php echo esc_url($settings['image_1']['url']); ?>" alt="Gallery Image 1">
-                <img class="gallery-image" src="<?php echo esc_url($settings['image_2']['url']); ?>" alt="Gallery Image 2">
-                <img class="gallery-image" src="<?php echo esc_url($settings['image_3']['url']); ?>" alt="Gallery Image 3">
-                <img class="gallery-image" src="<?php echo esc_url($settings['image_4']['url']); ?>" alt="Gallery Image 4">
+                <?php for ($i = 0; $i < 4; $i++): ?>
+                    <div class="gallery-item">
+                        <img class="gallery-image" src="<?php echo esc_url($initial_images[$i] ?? 'https://placehold.co/400x500/A87F58/FFF'); ?>" alt="Gallery Image <?php echo $i + 1; ?>">
+                    </div>
+                <?php endfor; ?>
             </div>
         </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const images = document.querySelectorAll('#image-gallery .gallery-image');
-                let sources = Array.from(images).map(img => img.src);
-                const order = [3, 1, 0, 2];
+                
+                const allImagesPool = [
+                    <?php foreach ($available_images as $image_url): ?>
+                        "<?php echo esc_url($image_url); ?>",
+                    <?php endforeach; ?>
+                ];
+                
+                let currentImageURLs = Array.from(images).map(img => img.src);
+                let imageIndexToUpdate = 0;
 
-                function changeImages() {
-                    sources.unshift(sources.pop());
-
-                    order.forEach((imgIndex, i) => {
-                        setTimeout(() => {
-                            images[imgIndex].classList.add('faded');
-                            setTimeout(() => {
-                                images[imgIndex].src = sources[imgIndex];
-                                images[imgIndex].classList.remove('faded');
-                            }, 500);
-                        }, i * 1000);
-                    });
+                function getNonRepeatingRandomImage(currentURLs) {
+                    let availablePool = allImagesPool.filter(url => !currentURLs.includes(url));
+                    
+                    if (availablePool.length === 0) {
+                        availablePool = allImagesPool;
+                    }
+                    
+                    const newImageURL = availablePool[Math.floor(Math.random() * availablePool.length)];
+                    return newImageURL;
                 }
 
-                changeImages();
+                function changeSingleImage() {
+                    if (images.length === 0) return;
+                    
+                    const imgToFade = images[imageIndexToUpdate];
+                    
+                    currentImageURLs = Array.from(images).map(img => img.src);
+                    
+                    const newImageURL = getNonRepeatingRandomImage(currentImageURLs);
 
-                setInterval(changeImages, 5000);
+                    imgToFade.classList.add('faded');
+
+                    setTimeout(() => {
+                        imgToFade.src = newImageURL;
+                        imgToFade.classList.remove('faded');
+                        
+                        imageIndexToUpdate = (imageIndexToUpdate + 1) % 4;
+                    }, 500);
+                }
+                
+                if (allImagesPool.length > 4) {
+                    setInterval(changeSingleImage, 3000);
+                }
             });
         </script>
 <?php
