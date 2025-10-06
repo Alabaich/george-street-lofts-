@@ -33,6 +33,7 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/imagesTabs.php');
     require_once(__DIR__ . '/widgets/gallerySlider.php');
     require_once(__DIR__ . '/widgets/contactUsPageForm.php');
+    require_once(__DIR__ . '/widgets/galleryGrid.php');
 
     $widgets_manager->register(new \Elementor_switchSideImage());
     $widgets_manager->register(new \Elementor_ImageGallerySection());
@@ -56,5 +57,7 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_Features_Slider());
     $widgets_manager->register(new \Elementor_GallerySlider());
     $widgets_manager->register(new \Elementor_ContactUsPageForm());
+    $widgets_manager->register(new \Elementor_GalleryGrid());
+    
 }
 add_action('elementor/widgets/register', 'register_hello_world_widget');
