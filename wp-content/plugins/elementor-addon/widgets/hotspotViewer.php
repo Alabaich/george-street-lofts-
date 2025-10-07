@@ -304,6 +304,7 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .gsl-hotspot-tooltip' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .hotspot-bottom-panel' => 'background-color: {{VALUE}};',
                 ],
                 'default' => '#FCF8F3',
             ]
@@ -316,6 +317,7 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .gsl-hotspot-tooltip-desc' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .hotspot-bottom-panel' => 'color: {{VALUE}};',
                 ],
                 'default' => '#32302F',
             ]
@@ -493,6 +495,21 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                 word-wrap: break-word;
             }
 
+            .hotdots .hotspot-bottom-panel {
+                display: none;
+                background: #FCF8F3;
+                color: #32302F;
+                padding: 20px;
+                border-radius: 12px;
+                text-align: left;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.4;
+                box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                box-sizing: border-box;
+            }
+
             @media (max-width: 767px) {
                 .hotdots {
                     gap: 30px;
@@ -522,44 +539,11 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                 }
 
                 .hotdots .gsl-hotspot-tooltip {
-                    position: absolute !important;
-                    top: unset !important;
-                    left: unset !important;
-                    right: unset !important;
-                    bottom: unset !important;
-                    transform: unset !important;
-                    bottom: calc(100% + 15px) !important;
-                    max-width: 90vw !important;
-                    width: auto !important;
-                    min-width: 150px !important;
-                    margin: 0 !important;
-                    z-index: 10000 !important;
-                    padding: 12px 16px !important;
-                    box-sizing: border-box;
+                    display: none !important;
                 }
 
-                .hotdots .gsl-hotspot.active .gsl-hotspot-tooltip {
-                    left: 50%;
-                    transform: translateX(-50%);
-                    opacity: 1;
-                    visibility: visible;
-                }
-
-                .hotdots .gsl-hotspot-tooltip-desc {
-                    font-size: 14px;
-                    text-align: left;
-                    word-break: break-word;
-                    overflow-wrap: break-word;
-                }
-
-                .hotdots .gsl-hotspot-tooltip.shift-left {
-                    left: 0 !important;
-                    transform: translateX(0) !important;
-                }
-
-                .hotdots .gsl-hotspot-tooltip.shift-right {
-                    left: 100% !important;
-                    transform: translateX(-100%) !important;
+                .hotdots .hotspot-bottom-panel {
+                    display: block;
                 }
             }
 
@@ -604,7 +588,9 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                                 $left = isset($hotspot['hotspot_left']['size']) ? $hotspot['hotspot_left']['size'] : 50;
                                 $tooltip_position = $this->get_tooltip_position($top, $left);
                                 ?>
-                                <div class="gsl-hotspot" style="top: <?php echo esc_attr($top); ?>%; left: <?php echo esc_attr($left); ?>%;">
+                                <div class="gsl-hotspot"
+                                    style="top: <?php echo esc_attr($top); ?>%; left: <?php echo esc_attr($left); ?>%;"
+                                    data-desc="<?php echo esc_attr($hotspot['hotspot_description']); ?>">
                                     <div class="gsl-hotspot-dot"></div>
                                     <div class="gsl-hotspot-tooltip <?php echo esc_attr($tooltip_position); ?>">
                                         <p class="gsl-hotspot-tooltip-desc"><?php echo esc_html($hotspot['hotspot_description']); ?></p>
@@ -615,12 +601,14 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
                     </div>
                 <?php endforeach; ?>
             </div>
+            <div class="hotspot-bottom-panel" id="hotspot-bottom-panel"></div>
         </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const tabs = document.querySelectorAll('.gsl-hotspot-tab');
                 const contents = document.querySelectorAll('.gsl-hotspot-content');
+                const panel = document.getElementById('hotspot-bottom-panel');
 
                 tabs.forEach(tab => {
                     tab.addEventListener('click', function() {
@@ -631,59 +619,58 @@ class Elementor_HotspotViewer extends \Elementor\Widget_Base
 
                         this.classList.add('active');
                         document.querySelector(`.gsl-hotspot-content[data-tab-content="${tabId}"]`).classList.add('active');
+
+                        // Clear panel when switching tabs
+                        panel.innerHTML = '';
                     });
                 });
 
                 const isMobile = window.innerWidth <= 767;
-                const hotspots = document.querySelectorAll('.gsl-hotspot');
 
-                function adjustTooltipPosition(tooltip) {
-                    tooltip.classList.remove('shift-left', 'shift-right');
+                if (!isMobile) {
+                    // Desktop behavior - hover tooltips
+                    const hotspots = document.querySelectorAll('.gsl-hotspot');
 
-                    const container = tooltip.closest('.gsl-hotspot-container');
-                    if (!container) return;
+                    function adjustTooltipPosition(tooltip) {
+                        tooltip.classList.remove('shift-left', 'shift-right');
 
-                    const containerRect = container.getBoundingClientRect();
-                    const tooltipRect = tooltip.getBoundingClientRect();
+                        const container = tooltip.closest('.gsl-hotspot-container');
+                        if (!container) return;
 
-                    if (tooltipRect.left < containerRect.left + 10) {
-                        tooltip.classList.add('shift-left');
-                    } else if (tooltipRect.right > containerRect.right - 10) {
-                        tooltip.classList.add('shift-right');
+                        const containerRect = container.getBoundingClientRect();
+                        const tooltipRect = tooltip.getBoundingClientRect();
+
+                        if (tooltipRect.left < containerRect.left + 10) {
+                            tooltip.classList.add('shift-left');
+                        } else if (tooltipRect.right > containerRect.right - 10) {
+                            tooltip.classList.add('shift-right');
+                        }
                     }
-                }
 
-                hotspots.forEach(hotspot => {
-                    const tooltip = hotspot.querySelector('.gsl-hotspot-tooltip');
-                    if (!tooltip) return;
+                    hotspots.forEach(hotspot => {
+                        const tooltip = hotspot.querySelector('.gsl-hotspot-tooltip');
+                        if (!tooltip) return;
 
-                    if (!isMobile) {
                         hotspot.addEventListener('mouseenter', () => {
                             adjustTooltipPosition(tooltip);
                         });
-                    } else {
+                    });
+                } else {
+                    // Mobile behavior - bottom panel
+                    document.querySelectorAll('.gsl-hotspot').forEach(hotspot => {
                         hotspot.addEventListener('click', function(e) {
                             e.stopPropagation();
-                            const wasActive = this.classList.contains('active');
-
-                            document.querySelectorAll('.gsl-hotspot').forEach(h => {
-                                h.classList.remove('active');
-                            });
-
-                            if (!wasActive) {
-                                this.classList.add('active');
-                                setTimeout(() => adjustTooltipPosition(tooltip), 0);
-                            }
+                            const desc = this.getAttribute('data-desc');
+                            document.querySelectorAll('.gsl-hotspot').forEach(h => h.classList.remove('active'));
+                            this.classList.add('active');
+                            panel.innerHTML = desc;
                         });
-                    }
-                });
+                    });
 
-                if (isMobile) {
                     document.addEventListener('click', function(e) {
                         if (!e.target.closest('.gsl-hotspot')) {
-                            document.querySelectorAll('.gsl-hotspot.active').forEach(h => {
-                                h.classList.remove('active');
-                            });
+                            document.querySelectorAll('.gsl-hotspot').forEach(h => h.classList.remove('active'));
+                            panel.innerHTML = '';
                         }
                     });
                 }
