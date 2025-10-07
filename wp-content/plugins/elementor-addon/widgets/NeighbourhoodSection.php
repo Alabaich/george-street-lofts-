@@ -2,7 +2,6 @@
 
 class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
 {
-
     public function get_name()
     {
         return 'NeighbourhoodSection';
@@ -30,6 +29,7 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
 
     protected function register_controls()
     {
+        // === Section Heading ===
         $this->start_controls_section(
             'neighbourhood_heading',
             [
@@ -60,6 +60,7 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
+        // === Slider Content ===
         $this->start_controls_section(
             'neighbourhood_slider_section',
             [
@@ -95,6 +96,42 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
+        // === Button Settings ===
+        $this->start_controls_section(
+            'neighbourhood_button_section',
+            [
+                'label' => esc_html__('Button', 'elementor-addon'),
+                'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'button_text',
+            [
+                'label'       => esc_html__('Button Text', 'elementor-addon'),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'default'     => esc_html__('Learn More', 'elementor-addon'),
+                'placeholder' => esc_html__('Enter button text', 'elementor-addon'),
+            ]
+        );
+
+        $this->add_control(
+            'button_link',
+            [
+                'label'         => esc_html__('Button Link', 'elementor-addon'),
+                'type'          => \Elementor\Controls_Manager::URL,
+                'placeholder'   => esc_html__('https://your-link.com', 'elementor-addon'),
+                'show_external' => true,
+                'default'       => [
+                    'url'         => '',
+                    'is_external' => false,
+                    'nofollow'    => false,
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     protected function render()
@@ -108,6 +145,7 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: column;
                 gap: 50px;
+                overflow: hidden;
             }
 
             .neighbourhood-slider {
@@ -117,9 +155,10 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
             .neighbourhood-slide {
                 overflow: hidden;
                 border-radius: 16px;
-                transition: transform 0.4s ease, opacity 0.4s ease;
+                transition: transform 0.4s ease, opacity 0.4s ease, z-index 0.4s ease;
                 transform: scale(0.85);
                 opacity: 0.6;
+                z-index: 1;
             }
 
             .neighbourhood-slide img {
@@ -132,7 +171,17 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
             .splide__slide.is-active .neighbourhood-slide {
                 transform: scale(1);
                 opacity: 1;
-                z-index: 2;
+                z-index: 3;
+                position: relative;
+            }
+
+            .splide__list {
+                gap: 0;
+            }
+
+            .splide__slide {
+                margin: 0 -50px;
+                position: relative;
             }
 
             .neighbourhood-slider-nav {
@@ -140,7 +189,6 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
                 justify-content: center;
                 align-items: center;
                 gap: 1rem;
-                margin-top: 2rem;
             }
 
             .neighbourhood-slider-prev,
@@ -196,6 +244,11 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
                 border-radius: 6px;
                 background: #A87F58;
             }
+
+            .neighbourhood-button-wrapper {
+                display: flex;
+                justify-content: center;
+            }
         </style>
 
         <div class="neighbourhood-section pageWidth">
@@ -237,6 +290,17 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
                     </svg>
                 </div>
             </div>
+
+            <?php if (!empty($settings['button_text']) && !empty($settings['button_link']['url'])) : ?>
+                <div class="neighbourhood-button-wrapper">
+                    <a class="mainButton"
+                       href="<?php echo esc_url($settings['button_link']['url']); ?>"
+                       <?php echo $settings['button_link']['is_external'] ? 'target="_blank"' : ''; ?>
+                       <?php echo $settings['button_link']['nofollow'] ? 'rel="nofollow"' : ''; ?>>
+                        <?php echo esc_html($settings['button_text']); ?>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
@@ -244,32 +308,31 @@ class Elementor_NeighbourhoodSection extends \Elementor\Widget_Base
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                const desktopPeek = '15%';
-                const tabletPeek = '10%';
-                const mobilePeek = '0%';
-
                 var splide = new Splide('.neighbourhood-slider', {
                     type: 'loop',
                     focus: 'center',
                     speed: 600,
                     arrows: false,
                     pagination: false,
+                    perPage: 1,
+                    gap: '-100px',
                     padding: {
-                        left: desktopPeek,
-                        right: desktopPeek,
+                        left: '15%',
+                        right: '15%'
                     },
                     breakpoints: {
                         1024: {
                             padding: {
-                                left: tabletPeek,
-                                right: tabletPeek,
+                                left: '10%',
+                                right: '10%'
                             }
                         },
                         768: {
                             padding: {
-                                left: mobilePeek,
-                                right: mobilePeek,
-                            }
+                                left: '0%',
+                                right: '0%'
+                            },
+                            gap: '10px',
                         }
                     }
                 }).mount();
