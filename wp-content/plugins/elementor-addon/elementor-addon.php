@@ -41,6 +41,7 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/animatedScoreSection.php'); 
     require_once(__DIR__ . '/widgets/cityLifeWidget.php'); 
     require_once(__DIR__ . '/widgets/amenitiesGrid.php'); 
+    require_once(__DIR__ . '/widgets/developmentsPortfolio.php'); 
 
     $widgets_manager->register(new \Elementor_switchSideImage());
     $widgets_manager->register(new \Elementor_ImageGallerySection());
@@ -72,6 +73,7 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_ScoreCircleWidget());
     $widgets_manager->register(new \Elementor_CityLifeWidget());
     $widgets_manager->register(new \Elementor_AmenitiesGridWidget());
+    $widgets_manager->register(new \Elementor_DevelopmentsPortfolioWidget());
 }
 
 add_action('elementor/widgets/register', 'register_hello_world_widget');
