@@ -277,7 +277,6 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 justify-content: space-between;
                 width: 100%;
                 border-bottom: 1px solid #e5e5e5;
-                overflow-x: hidden;
             }
 
             .gsl-tab-menu-item {

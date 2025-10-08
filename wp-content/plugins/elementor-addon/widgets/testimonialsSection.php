@@ -27,7 +27,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
         $this->start_controls_section(
             'section_general',
             [
-                'label' => esc_html__('General Content', 'elementor-addon'),
+                'label' => esc_html__('General Content (Large Quote)', 'elementor-addon'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             ]
         );
@@ -35,7 +35,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
         $this->add_control(
             'testimonial_title',
             [
-                'label' => esc_html__('Testimonial Title', 'elementor-addon'),
+                'label' => esc_html__('Section Title', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Why Residents Love Living Here?', 'elementor-addon'),
             ]
@@ -44,7 +44,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
         $this->add_control(
             'testimonial_quote_text',
             [
-                'label' => esc_html__('Quote Text', 'elementor-addon'),
+                'label' => esc_html__('Large Quote Text', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'default' => esc_html__('“We Absolutely Love Living Here! The Management And Maintenance Team Are Not Only Friendly And Efficient, But They Also Go Above And Beyond By Hosting Resident Events Throughout The Year. It Truly Feels Like Home.”', 'elementor-addon'),
             ]
@@ -53,7 +53,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
         $this->add_control(
             'testimonial_author',
             [
-                'label' => esc_html__('Quote Author', 'elementor-addon'),
+                'label' => esc_html__('Large Quote Author', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('Warren And Lorraine', 'elementor-addon'),
             ]
@@ -62,7 +62,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
         $this->add_control(
             'testimonial_location',
             [
-                'label' => esc_html__('Quote Location', 'elementor-addon'),
+                'label' => esc_html__('Large Quote Location', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('George Street Lofts', 'elementor-addon'),
             ]
@@ -72,7 +72,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
             'testimonial_rating',
             [
                 'label' => esc_html__(
-                    'Rating (1-5)',
+                    'Large Quote Rating (1-5)',
                     'elementor-addon'
                 ),
                 'type' => \Elementor\Controls_Manager::NUMBER,
@@ -96,20 +96,91 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_small_testimonials',
+            [
+                'label' => esc_html__('Small Testimonials Grid', 'elementor-addon'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $repeater = new \Elementor\Repeater();
+
+        $repeater->add_control(
+            'small_quote_text',
+            [
+                'label' => esc_html__('Quote Text', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'default' => esc_html__('“This community is fantastic. The apartments are gorgeous and the location can\'t be beat!”', 'elementor-addon'),
+            ]
+        );
+
+        $repeater->add_control(
+            'small_quote_author',
+            [
+                'label' => esc_html__('Author', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('A Happy Resident', 'elementor-addon'),
+            ]
+        );
+
+        $repeater->add_control(
+            'small_quote_location',
+            [
+                'label' => esc_html__('Location', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => esc_html__('Apartment 201', 'elementor-addon'),
+            ]
+        );
+
+        $repeater->add_control(
+            'small_quote_rating',
+            [
+                'label' => esc_html__('Rating (1-5)', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 5,
+                'step' => 1,
+                'default' => 5,
+            ]
+        );
+
+        $this->add_control(
+            'small_testimonials_list',
+            [
+                'label' => esc_html__('Testimonials', 'elementor-addon'),
+                'type' => \Elementor\Controls_Manager::REPEATER,
+                'fields' => $repeater->get_controls(),
+                'default' => [
+                    ['small_quote_text' => '“The maintenance team is prompt and efficient.”', 'small_quote_author' => 'Mark T.', 'small_quote_location' => 'Unit 1A'],
+                    ['small_quote_text' => '“Great location, close to everything I need.”', 'small_quote_author' => 'Sarah K.', 'small_quote_location' => 'Unit 3B'],
+                    ['small_quote_text' => '“Love the amenities and the friendly staff.”', 'small_quote_author' => 'David L.', 'small_quote_location' => 'Unit 5C'],
+                ],
+                'title_field' => '{{{ small_quote_author }}}',
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
 
-        $star_svg = '<svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.802 6.26166C13.2254 4.95835 15.0693 4.95835 15.4928 6.26166L17.0058 10.9183C17.1952 11.5012 17.7383 11.8958 18.3512 11.8958H23.2475C24.6179 11.8958 25.1877 13.6494 24.079 14.4549L20.1178 17.3329C19.622 17.6931 19.4145 18.3316 19.6039 18.9145L21.117 23.5712C21.5404 24.8745 20.0487 25.9583 18.9401 25.1528L14.9789 22.2748C14.4831 21.9146 13.8117 21.9146 13.3159 22.2748L9.35466 25.1528C8.246 25.9583 6.7543 24.8745 7.17778 23.5712L8.69082 18.9145C8.8802 18.3316 8.67274 17.6931 8.17693 17.3329L4.21573 14.4549C3.10706 13.6494 3.67684 11.8958 5.04722 11.8958H9.94354C10.5564 11.8958 11.0995 11.5012 11.2889 10.9183L12.802 6.26166Z" fill="#FFE66A"/></svg>';
+        $star_svg_template = '<svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.802 6.26166C13.2254 4.95835 15.0693 4.95835 15.4928 6.26166L17.0058 10.9183C17.1952 11.5012 17.7383 11.8958 18.3512 11.8958H23.2475C24.6179 11.8958 25.1877 13.6494 24.079 14.4549L20.1178 17.3329C19.622 17.6931 19.4145 18.3316 19.6039 18.9145L21.117 23.5712C21.5404 24.8745 20.0487 25.9583 18.9401 25.1528L14.9789 22.2748C14.4831 21.9146 13.8117 21.9146 13.3159 22.2748L9.35466 25.1528C8.246 25.9583 6.7543 24.8745 7.17778 23.5712L8.69082 18.9145C8.8802 18.3316 8.67274 17.6931 8.17693 17.3329L4.21573 14.4549C3.10706 13.6494 3.67684 11.8958 5.04722 11.8958H9.94354C10.5564 11.8958 11.0995 11.5012 11.2889 10.9183L12.802 6.26166Z" fill="#FFE66A"/></svg>';
 
-        $rating_stars = '';
-        $rating = max(1, min(5, (int)$settings['testimonial_rating']));
-        for ($i = 0; $i < 5; $i++) {
-            $fill_color = $i < $rating ? '#FFE66A' : '#E0E0E0';
-            $rating_stars .= str_replace('fill="#FFE66A"', 'fill="' . $fill_color . '"', $star_svg);
-        }
+        $get_rating_stars = function ($rating_value) use ($star_svg_template) {
+            $rating_stars_html = '';
+            $rating = max(1, min(5, (int)$rating_value));
+            for ($i = 0; $i < 5; $i++) {
+                $fill_color = $i < $rating ? '#FFE66A' : '#E0E0E0';
+                $rating_stars_html .= str_replace('fill="#FFE66A"', 'fill="' . $fill_color . '"', $star_svg_template);
+            }
+            return $rating_stars_html;
+        };
+
+        $large_quote_stars = $get_rating_stars($settings['testimonial_rating']);
 ?>
         <style>
             .atria-testimonials-section {
@@ -395,24 +466,28 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
                             <p class="atria-quote-author"><?php echo esc_html($settings['testimonial_author']); ?></p>
                             <p class="atria-quote-location"><?php echo esc_html($settings['testimonial_location']); ?></p>
                             <div class="atria-rating-stars">
-                                <?php echo $rating_stars; ?>
+                                <?php echo $large_quote_stars; ?>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="atria-small-quotes">
-                    <?php for ($i = 0; $i < 3; $i++) : ?>
-                        <div class="atria-small-quote-item">
-                            <p class="atria-small-quote-text"><?php echo nl2br(esc_html(trim($settings['testimonial_quote_text'], '“')) . '”'); ?></p>
-                            <p class="atria-small-quote-author"><?php echo esc_html($settings['testimonial_author']); ?></p>
-                            <p class="atria-small-quote-location"><?php echo esc_html($settings['testimonial_location']); ?></p>
-                            <div class="atria-rating-stars">
-                                <?php echo $rating_stars; ?>
+                <?php if ($settings['small_testimonials_list']) : ?>
+                    <div class="atria-small-quotes">
+                        <?php foreach ($settings['small_testimonials_list'] as $item) : ?>
+                            <div class="atria-small-quote-item">
+                                <p class="atria-small-quote-text"><?php echo nl2br(esc_html($item['small_quote_text'])); ?></p>
+                                <div class="atria-quote-meta-wrapper">
+                                    <p class="atria-small-quote-author"><?php echo esc_html($item['small_quote_author']); ?></p>
+                                    <p class="atria-small-quote-location"><?php echo esc_html($item['small_quote_location']); ?></p>
+                                    <div class="atria-rating-stars">
+                                        <?php echo $get_rating_stars($item['small_quote_rating']); ?>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    <?php endfor; ?>
-                </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </section>
 <?php

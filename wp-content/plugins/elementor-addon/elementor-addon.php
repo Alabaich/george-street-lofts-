@@ -3,9 +3,9 @@
 /**
  * Plugin Name: George Street Additional Widgets
  * Description: Simple hello world widgets for Elementor.
- * Version:     1.0.1
- * Author:      Enjoyable Design
- * Author URI:  https://enjoyable.design/
+ * Version:     1.0.1
+ * Author:      Enjoyable Design
+ * Author URI:  https://enjoyable.design/
  * Text Domain: elementor-addon
  */
 
@@ -38,6 +38,9 @@ function register_hello_world_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/featuresGridTabs.php');
     require_once(__DIR__ . '/widgets/atriaAdvantageSection.php');
     require_once(__DIR__ . '/widgets/executiveTeamSection.php');
+    require_once(__DIR__ . '/widgets/animatedScoreSection.php'); 
+    require_once(__DIR__ . '/widgets/cityLifeWidget.php'); 
+    require_once(__DIR__ . '/widgets/amenitiesGrid.php'); 
 
     $widgets_manager->register(new \Elementor_switchSideImage());
     $widgets_manager->register(new \Elementor_ImageGallerySection());
@@ -66,6 +69,9 @@ function register_hello_world_widget($widgets_manager)
     $widgets_manager->register(new \Elementor_FeaturesGridTabs());
     $widgets_manager->register(new \Elementor_AtriaAdvantageSection());
     $widgets_manager->register(new \Elementor_ExecutiveTeamSection());
+    $widgets_manager->register(new \Elementor_ScoreCircleWidget());
+    $widgets_manager->register(new \Elementor_CityLifeWidget());
+    $widgets_manager->register(new \Elementor_AmenitiesGridWidget());
 }
 
 add_action('elementor/widgets/register', 'register_hello_world_widget');

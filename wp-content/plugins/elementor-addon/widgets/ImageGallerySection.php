@@ -120,7 +120,7 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        
+
         $available_images = [];
         for ($i = 1; $i <= 8; $i++) {
             $image_key = 'image_' . $i;
@@ -128,11 +128,11 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
                 $available_images[] = $settings[$image_key]['url'];
             }
         }
-        
+
         while (count($available_images) < 4) {
             $available_images[] = 'https://placehold.co/400x500/A87F58/FFF';
         }
-        
+
         $unique_images = array_unique($available_images);
         shuffle($unique_images);
         $initial_images = array_slice($unique_images, 0, 4);
@@ -143,7 +143,6 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
                 text-align: center;
                 display: flex;
                 flex-direction: column;
-                gap: 50px;
             }
 
             .gsl-heading-wrapper {
@@ -153,7 +152,6 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
                 gap: 10px;
                 max-width: 900px;
                 margin: 0 auto;
-                margin-bottom: 2px;
             }
 
             .button-wrapper {
@@ -195,11 +193,11 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
             @media (min-width: 768px) {
                 .gallery-item:nth-child(1),
                 .gallery-item:nth-child(4) {
-                    height: 400px;
+                    height: 550px;
                 }
                 .gallery-item:nth-child(2),
                 .gallery-item:nth-child(3) {
-                    height: 370px;
+                    height: 470px;
                 }
             }
 
@@ -254,34 +252,34 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const images = document.querySelectorAll('#image-gallery .gallery-image');
-                
+
                 const allImagesPool = [
                     <?php foreach ($available_images as $image_url): ?>
                         "<?php echo esc_url($image_url); ?>",
                     <?php endforeach; ?>
                 ];
-                
+
                 let currentImageURLs = Array.from(images).map(img => img.src);
                 let imageIndexToUpdate = 0;
 
                 function getNonRepeatingRandomImage(currentURLs) {
                     let availablePool = allImagesPool.filter(url => !currentURLs.includes(url));
-                    
+
                     if (availablePool.length === 0) {
                         availablePool = allImagesPool;
                     }
-                    
+
                     const newImageURL = availablePool[Math.floor(Math.random() * availablePool.length)];
                     return newImageURL;
                 }
 
                 function changeSingleImage() {
                     if (images.length === 0) return;
-                    
+
                     const imgToFade = images[imageIndexToUpdate];
-                    
+
                     currentImageURLs = Array.from(images).map(img => img.src);
-                    
+
                     const newImageURL = getNonRepeatingRandomImage(currentImageURLs);
 
                     imgToFade.classList.add('faded');
@@ -289,11 +287,11 @@ class Elementor_ImageGallerySection extends \Elementor\Widget_Base
                     setTimeout(() => {
                         imgToFade.src = newImageURL;
                         imgToFade.classList.remove('faded');
-                        
+
                         imageIndexToUpdate = (imageIndexToUpdate + 1) % 4;
                     }, 500);
                 }
-                
+
                 if (allImagesPool.length > 4) {
                     setInterval(changeSingleImage, 3000);
                 }
