@@ -235,21 +235,6 @@ class Elementor_AwardsAndRecognition extends \Elementor\Widget_Base
                 color: #333;
             }
 
-            .gsl-award-title {
-                font-size: 20px;
-                font-weight: 600;
-                margin-bottom: 12px;
-                color: #333;
-                line-height: 1.3;
-            }
-
-            .gsl-award-subtitle {
-                font-size: 16px;
-                color: #666;
-                line-height: 1.5;
-                margin: 0;
-            }
-
             @media (max-width: 767px) {
                 .gsl-awards-grid {
                     flex-direction: column;
