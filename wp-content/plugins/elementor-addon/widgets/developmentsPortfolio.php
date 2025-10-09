@@ -227,7 +227,7 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                 border: none;
                 padding: 12px 20px;
                 cursor: pointer;
-                font-family: Arial, sans-serif;
+                font-family: "Open Sans", sans-serif;
                 font-size: 14px;
                 font-weight: 500;
                 border-radius: 5px;
@@ -293,7 +293,7 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
 
             .atria-dev-name {
                 color: var(--Black, #32302F);
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 32px;
                 font-style: normal;
                 font-weight: 500;
@@ -304,7 +304,7 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
 
             .atria-dev-location {
                 color: var(--Black, #32302F);
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 500;
@@ -321,7 +321,7 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
 
             .atria-dev-description {
                 color: var(--Text-color, #5C5C5C);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;

@@ -261,7 +261,7 @@ class Elementor_FeaturesGridTabs extends \Elementor\Widget_Base
 
             .featuresGridTabs-<?php echo esc_attr($widget_id); ?> .feature-title {
                 color: var(--White, #FFF);
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 28px;
                 font-style: normal;
                 font-weight: 500;
@@ -271,13 +271,13 @@ class Elementor_FeaturesGridTabs extends \Elementor\Widget_Base
 
             .featuresGridTabs-<?php echo esc_attr($widget_id); ?> .feature-description {
                 color: var(--Input, #F3F5F6);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 400;
                 line-height: 140%;
             }
-            
+
             .featuresGridTabs-<?php echo esc_attr($widget_id); ?> .tab-nav-button:hover,
             .featuresGridTabs-<?php echo esc_attr($widget_id); ?> .tab-nav-button.active,
             .featuresGridTabs-<?php echo esc_attr($widget_id); ?> .tab-nav-button.focus {

@@ -66,7 +66,7 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args);
 
 	.headr-nav a {
 		color: var(--Black, #32302F);
-		font-family: "Albra Book TRIAL";
+		font-family: "Cormorant", serif;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 400;
@@ -79,13 +79,13 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args);
 
 	.headr .btn {
 		border-radius: 4px;
-		border: 1.5px solid #4D4337;
+		border: 1.5px solid #A67131;
 		display: flex;
-		padding: 15px 30px;
+		padding: 14px 24px;
 		justify-content: center;
 		align-items: center;
 		gap: 10px;
-		color: #4D4337;
+		color: #A67131;
 		background: transparent;
 		text-decoration: none;
 		font-family: 'Inter', sans-serif;
@@ -98,7 +98,7 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args);
 	}
 
 	.headr .btn:hover {
-		background: #4D4337;
+		background: #A67131;
 		color: #fff;
 	}
 
@@ -239,14 +239,12 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args);
 			display: block;
 		}
 	}
-
-
 </style>
 
 <header id="site-header" class="headr site-header dynamic-header <?php echo esc_attr($header_class); ?>">
 	<div class="headr-container">
 		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/styles.css">
-    
+
 		<div class="headr-logo site-branding show-<?php echo esc_attr(hello_elementor_get_setting('hello_header_logo_type')); ?>">
 			<?php if (has_custom_logo()) : ?>
 				<div class="site-logo">

@@ -276,7 +276,7 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
 
             .atria-post-date {
                 color: var(--Color-Grey, #9E9E9E);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -285,7 +285,7 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
 
             .atria-main-post-title {
                 color: var(--Black, #32302F);
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 28px;
                 font-style: normal;
                 font-weight: 500;
@@ -295,7 +295,7 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
 
             .atria-read-time {
                 color: var(--Color-Grey, #9E9E9E);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -305,7 +305,7 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
 
             .atria-read-more {
                 color: var(--Black, #32302F);
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 500;

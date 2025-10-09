@@ -16,7 +16,7 @@
 			display: flex;
 			gap: 20rem;
 			padding: 4rem 0;
-			font-family: Arial;
+			font-family: "Open Sans", sans-serif;
 		}
 
 		.footer-container .brand-column {
@@ -109,7 +109,7 @@
 			border: 1px solid #d1d5db;
 			border-radius: 4px;
 			font-size: 0.9rem;
-			font-family: Arial;
+			font-family: "Open Sans", sans-serif;
 			color: #666;
 		}
 
@@ -231,7 +231,7 @@
 
 		.copyright {
 			color: var(--Black, #32302F);
-			font-family: Arial;
+			font-family: "Open Sans", sans-serif;
 			font-size: 14px;
 			font-style: normal;
 			font-weight: 400;
@@ -246,7 +246,7 @@
 
 		.legal-link {
 			color: var(--Black, #32302F);
-			font-family: Arial;
+			font-family: "Open Sans", sans-serif;
 			font-size: 14px;
 			font-style: normal;
 			font-weight: 400;

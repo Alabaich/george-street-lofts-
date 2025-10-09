@@ -398,7 +398,7 @@ class Elementor_GslTabsSection extends \Elementor\Widget_Base
                 margin-top: 1rem;
                 color: #A67131;
                 text-decoration: none;
-                font-family: "Albra Book TRIAL", sans-serif;
+                font-family: "Cormorant", serif;
                 font-size: 16px;
                 font-weight: 500;
                 line-height: 110%;

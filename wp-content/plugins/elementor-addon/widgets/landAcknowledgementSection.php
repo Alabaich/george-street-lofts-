@@ -209,7 +209,7 @@ class Elementor_LandAcknowledgementSection extends \Elementor\Widget_Base
 
             .land-ack-column-title {
                 color: var(--Black, #32302F);
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 32px;
                 font-style: normal;
                 font-weight: 500;
@@ -220,7 +220,7 @@ class Elementor_LandAcknowledgementSection extends \Elementor\Widget_Base
 
             .land-ack-column-description {
                 color: var(--Text-color, #5C5C5C);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 400;
@@ -228,7 +228,7 @@ class Elementor_LandAcknowledgementSection extends \Elementor\Widget_Base
             }
 
             .land-ack-learn-more-wrapper {
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 400;
@@ -251,6 +251,7 @@ class Elementor_LandAcknowledgementSection extends \Elementor\Widget_Base
                 .land-ack-main-title {
                     font-size: 36px;
                 }
+
                 .land-ack-container {
                     gap: 25px;
                 }

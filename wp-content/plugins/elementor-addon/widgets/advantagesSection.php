@@ -148,7 +148,7 @@ class Elementor_AdvantagesSection extends \Elementor\Widget_Base
             .atria-advantages-subtitle {
                 color: var(--Input, #F3F5F6);
                 text-align: center;
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 400;
@@ -188,7 +188,7 @@ class Elementor_AdvantagesSection extends \Elementor\Widget_Base
 
             .atria-advantage-title {
                 color: var(--White, #FFF);
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 24px;
                 font-style: normal;
                 font-weight: 500;
@@ -198,7 +198,7 @@ class Elementor_AdvantagesSection extends \Elementor\Widget_Base
 
             .atria-advantage-description {
                 color: var(--Input, #F3F5F6);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 400;

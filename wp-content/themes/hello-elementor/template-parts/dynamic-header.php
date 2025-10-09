@@ -66,7 +66,7 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args);
 
 	.headr-nav a {
 		color: var(--Black, #32302F);
-		font-family: "Albra Book TRIAL";
+		font-family: "Cormorant", serif;
 		font-size: 16px;
 		font-style: normal;
 		font-weight: 400;

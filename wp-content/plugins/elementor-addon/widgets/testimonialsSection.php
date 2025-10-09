@@ -184,7 +184,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
 ?>
         <style>
             .atria-testimonials-section {
-                font-family: Arial, sans-serif;
+                font-family: "Open Sans", sans-serif;
             }
 
             .atria-reviews-container {
@@ -276,7 +276,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
 
             .atria-quote-author {
                 color: var(--Black, #32302F);
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 24px;
                 font-style: normal;
                 font-weight: 500;
@@ -287,7 +287,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
 
             .atria-quote-location {
                 color: var(--Black, #32302F);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -332,7 +332,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
             .atria-small-quote-text {
                 color: var(--Black, #32302F);
                 text-align: center;
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 500;
@@ -345,7 +345,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
 
             .atria-small-quote-author {
                 color: var(--Black, #32302F);
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 500;
@@ -355,7 +355,7 @@ class Elementor_TestimonialsSection extends \Elementor\Widget_Base
 
             .atria-small-quote-location {
                 color: var(--Black, #32302F);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 14px;
                 font-style: normal;
                 font-weight: 400;

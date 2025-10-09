@@ -181,7 +181,7 @@ class Elementor_AmenitiesGridWidget extends \Elementor\Widget_Base
 
             .neighbourhood-title {
                 color: #32302F;
-                font-family: 'Albra', serif;
+                font-family: "Cormorant", serif;
                 font-size: 48px;
                 font-weight: 500;
                 line-height: 110%;
@@ -227,7 +227,7 @@ class Elementor_AmenitiesGridWidget extends \Elementor\Widget_Base
 
             .amenity-category-title {
                 color: var(--Black, #32302F);
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 28px;
                 font-style: normal;
                 font-weight: 500;
@@ -265,7 +265,7 @@ class Elementor_AmenitiesGridWidget extends \Elementor\Widget_Base
 
             .amenity-item-name {
                 color: #A87F58;
-                font-family: Arial, sans-serif;
+                font-family: "Open Sans", sans-serif;
                 font-size: 14px;
                 font-weight: 700;
                 line-height: 100%;
@@ -282,7 +282,7 @@ class Elementor_AmenitiesGridWidget extends \Elementor\Widget_Base
             .amenity-item-distance {
                 color: var(--Black, #32302F);
                 text-align: center;
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 56px;
                 font-style: normal;
                 font-weight: 500;
@@ -293,7 +293,7 @@ class Elementor_AmenitiesGridWidget extends \Elementor\Widget_Base
 
             .amenity-item-unit {
                 color: var(--Black, #32302F);
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;

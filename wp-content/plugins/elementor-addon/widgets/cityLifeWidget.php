@@ -119,11 +119,11 @@ class Elementor_CityLifeWidget extends \Elementor\Widget_Base
         }
 
         $main_cards = $settings['cards_list'];
-        
+
         $svg_prev_arrow = '<svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.9301 18.9889C14.3369 19.3957 14.9964 19.3957 15.4032 18.9889C15.81 18.5822 15.81 17.9226 15.4032 17.5158L9.8898 12.0024L15.4032 6.48893C15.81 6.08213 15.81 5.42259 15.4032 5.01579C14.9964 4.60899 14.3369 4.60899 13.9301 5.01579L7.6801 11.2658C7.2733 11.6726 7.2733 12.3321 7.6801 12.7389L13.9301 18.9889Z" fill="currentColor" /></svg>';
         $svg_next_arrow = '<svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.15292 18.9889C8.74612 19.3957 8.08658 19.3957 7.67978 18.9889C7.27299 18.5822 7.27299 17.9226 7.67978 17.5158L13.1932 12.0024L7.67978 6.48893C7.27299 6.08213 7.27299 5.42259 7.67978 5.01579C8.08658 4.60899 8.74612 4.60899 9.15292 5.01579L15.4029 11.2658C15.8097 11.6726 15.8097 12.3321 15.4029 12.7389L9.15292 18.9889Z" fill="currentColor" /></svg>';
 ?>
-        
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
 
         <style>
@@ -141,7 +141,7 @@ class Elementor_CityLifeWidget extends \Elementor\Widget_Base
             .city-life-header {
                 color: var(--Text-color, #5C5C5C);
                 text-align: center;
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
@@ -152,7 +152,7 @@ class Elementor_CityLifeWidget extends \Elementor\Widget_Base
             .city-life-title {
                 color: var(--Black, #32302F);
                 text-align: center;
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 48px;
                 font-style: normal;
                 font-weight: 500;
@@ -194,15 +194,15 @@ class Elementor_CityLifeWidget extends \Elementor\Widget_Base
                 color: #666;
                 text-align: left;
             }
-            
+
             .custom-splide-controls-<?php echo esc_attr($widget_id); ?> {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 15px; 
+                gap: 15px;
                 margin-top: 30px;
             }
-            
+
             .splide__arrows {
                 display: none;
             }
@@ -270,8 +270,8 @@ class Elementor_CityLifeWidget extends \Elementor\Widget_Base
             }
 
             .custom-pagination-list li button.is-active {
-                background-color: #A87F58; 
-                transform: none; 
+                background-color: #A87F58;
+                transform: none;
             }
         </style>
 
@@ -330,18 +330,18 @@ class Elementor_CityLifeWidget extends \Elementor\Widget_Base
                     perPage: 3,
                     perMove: 1,
                     gap: '25px',
-                    pagination: true, 
+                    pagination: true,
                     arrows: false, // Set back to FALSE since we use manual click handlers now
                     drag: true,
                     mediaQuery: 'min',
                     breakpoints: {
                         769: {
-                            perPage: 3, 
+                            perPage: 3,
                             perMove: 1,
                             gap: '25px',
                             padding: 0
                         },
-                        0: { 
+                        0: {
                             perPage: 1,
                             perMove: 1,
                             gap: '20px',
@@ -353,7 +353,7 @@ class Elementor_CityLifeWidget extends \Elementor\Widget_Base
                 splideInstance.on('mounted', function() {
                     var defaultPagination = splideElement.querySelector('.splide__pagination');
                     var customPaginationTarget = document.getElementById(paginationListId);
-                    
+
                     if (defaultPagination && customPaginationTarget) {
                         // Move all list items (dots) from Splide's generated container
                         while (defaultPagination.firstChild) {

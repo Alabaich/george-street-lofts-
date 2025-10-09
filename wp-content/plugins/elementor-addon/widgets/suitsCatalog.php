@@ -147,7 +147,7 @@ class Elementor_SuitesCatalog extends \Elementor\Widget_Base
 
             .catalog-subtitle {
                 color: var(--Text-color, #5C5C5C);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;

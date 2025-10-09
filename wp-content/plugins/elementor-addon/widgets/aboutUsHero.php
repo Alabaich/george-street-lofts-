@@ -188,7 +188,6 @@ class Elementor_AboutUsHero extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
-
     }
 
     protected function render()
@@ -248,7 +247,7 @@ class Elementor_AboutUsHero extends \Elementor\Widget_Base
                 margin: 0;
                 list-style: disc inside;
                 animation: scrollLeft 40s linear infinite;
-                min-width: max-content; 
+                min-width: max-content;
             }
 
             .scrollingSlider ul:hover {
@@ -259,7 +258,7 @@ class Elementor_AboutUsHero extends \Elementor\Widget_Base
                 display: inline-block;
                 padding-right: 80px;
                 text-align: center;
-                font-family: Arial, sans-serif;
+                font-family: "Open Sans", sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 500;
@@ -272,7 +271,7 @@ class Elementor_AboutUsHero extends \Elementor\Widget_Base
                 }
 
                 100% {
-                    transform: translateX(-33.333%); 
+                    transform: translateX(-33.333%);
                 }
             }
         </style>

@@ -233,7 +233,7 @@ class Elementor_ScoreCircleWidget extends \Elementor\Widget_Base
             .score-value {
                 color: #FFF;
                 text-align: center;
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 48px;
                 font-style: normal;
                 font-weight: 500;
@@ -245,7 +245,7 @@ class Elementor_ScoreCircleWidget extends \Elementor\Widget_Base
             .score-label {
                 color: #FFF;
                 text-align: center;
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 500;
@@ -262,7 +262,7 @@ class Elementor_ScoreCircleWidget extends \Elementor\Widget_Base
                 margin: 0 auto;
                 color: #FFF;
                 text-align: center;
-                font-family: Albra;
+                font-family: "Cormorant", serif;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 500;

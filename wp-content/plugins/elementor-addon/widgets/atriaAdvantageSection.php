@@ -281,7 +281,7 @@ class Elementor_AtriaAdvantageSection extends \Elementor\Widget_Base
             .atria-block-title {
                 color: var(--Black, #32302F);
                 font-feature-settings: 'salt' on;
-                font-family: Arial, sans-serif;
+                font-family: "Open Sans", sans-serif;
                 font-size: 48px;
                 font-style: normal;
                 font-weight: 500;
@@ -293,7 +293,7 @@ class Elementor_AtriaAdvantageSection extends \Elementor\Widget_Base
 
             .atria-block-text {
                 color: var(--Text-color, #5C5C5C);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 18px;
                 font-style: normal;
                 font-weight: 400;

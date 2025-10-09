@@ -192,7 +192,7 @@ class Elementor_AtriaDevelopmentSection extends \Elementor\Widget_Base
                 background-color: #4D4337;
                 padding: 50px 0;
                 color: #FFFFFF;
-                font-family: Arial, sans-serif;
+                font-family: "Open Sans", sans-serif;
             }
 
             .atria-section .atria-container {
@@ -231,7 +231,7 @@ class Elementor_AtriaDevelopmentSection extends \Elementor\Widget_Base
                 align-items: center;
                 gap: 10px;
                 margin: 0;
-                font-family: "Albra Book TRIAL";
+                font-family: "Cormorant", serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;

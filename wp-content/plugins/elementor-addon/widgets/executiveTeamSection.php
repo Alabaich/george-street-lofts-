@@ -274,7 +274,7 @@ class Elementor_ExecutiveTeamSection extends \Elementor\Widget_Base
             .team-member-name {
                 color: var(--Black, #32302F);
                 text-align: center;
-                font-family: Arial, sans-serif;
+                font-family: "Open Sans", sans-serif;
                 font-size: 32px;
                 font-style: normal;
                 font-weight: 500;
@@ -286,7 +286,7 @@ class Elementor_ExecutiveTeamSection extends \Elementor\Widget_Base
 
             .team-member-title {
                 color: var(--Black, #32302F);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 14px;
                 font-style: normal;
                 font-weight: 400;
@@ -296,7 +296,7 @@ class Elementor_ExecutiveTeamSection extends \Elementor\Widget_Base
 
             .team-member-description {
                 color: var(--Color-Grey, #9E9E9E);
-                font-family: Arial;
+                font-family: "Open Sans", sans-serif;
                 font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
