@@ -106,7 +106,7 @@ a.secondaryButton {
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-  border-radius: 12px;
+  border-radius: 4px;
   border: 1.5px solid #d3d3d3;
   background: transparent;
   transition: all 0.3s ease;
