@@ -225,6 +225,7 @@ class Elementor_LandAcknowledgementSection extends \Elementor\Widget_Base
                 font-style: normal;
                 font-weight: 400;
                 line-height: 140%;
+                text-align: left;
             }
 
             .land-ack-learn-more-wrapper {
@@ -333,7 +334,7 @@ class Elementor_LandAcknowledgementSection extends \Elementor\Widget_Base
                         <?php endif; ?>
 
                         <?php if (!empty($settings['right_column_learn_more_html'])) : ?>
-                            <div class="land-ack-learn-more-wrapper">
+                            <div style="text-align: left;" class="land-ack-learn-more-wrapper">
                                 <?php
                                 echo $settings['right_column_learn_more_html'];
                                 ?>

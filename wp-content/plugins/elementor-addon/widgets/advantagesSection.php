@@ -203,6 +203,7 @@ class Elementor_AdvantagesSection extends \Elementor\Widget_Base
                 font-style: normal;
                 font-weight: 400;
                 line-height: 140%;
+                text-align: left;
             }
 
             @media (max-width: 1024px) {

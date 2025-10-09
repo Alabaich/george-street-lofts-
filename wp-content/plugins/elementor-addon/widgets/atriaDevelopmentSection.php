@@ -223,7 +223,7 @@ class Elementor_AtriaDevelopmentSection extends \Elementor\Widget_Base
                 display: flex;
                 flex-direction: column;
                 margin-top: 20px;
-                gap: 5px;
+                gap: 10px;
             }
 
             .atria-contact-info p {
@@ -317,6 +317,8 @@ class Elementor_AtriaDevelopmentSection extends \Elementor\Widget_Base
                 font-weight: bold;
                 margin: 0;
                 line-height: 1.2;
+                color: #fff;
+                text-align: left;
             }
 
             .atria-slide-button:hover {
@@ -462,7 +464,7 @@ class Elementor_AtriaDevelopmentSection extends \Elementor\Widget_Base
                                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                         <polyline points="22,6 12,13 2,6"></polyline>
                                     </svg>
-                                    <a href="mailto:<?php echo esc_attr($settings['atria_email']); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($settings['atria_email']); ?></a>
+                                    <a href="mailto:<?php echo esc_attr($settings['atria_email']); ?>" style="color: #fff; text-decoration: none;"><?php echo esc_html($settings['atria_email']); ?></a>
                                 </p>
                             <?php endif; ?>
                             <?php if ($settings['atria_phone']) : ?>
@@ -470,7 +472,7 @@ class Elementor_AtriaDevelopmentSection extends \Elementor\Widget_Base
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M22 16.92v3a2 2 2 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-5.32-5.32 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 17.5 17.5 0 0 0 .22 3.82 2 2 0 0 1-1.23 2.14l-1.39.75a17.9 17.9 0 0 0 8.01 8.01l.75-1.39a2 2 0 0 1 2.14-1.23 17.5 17.5 0 0 0 3.82.22 2 2 0 0 1 1.72 2v3z"></path>
                                     </svg>
-                                    <a href="tel:<?php echo esc_attr($settings['atria_phone']); ?>" style="color: inherit; text-decoration: none;"><?php echo esc_html($settings['atria_phone']); ?></a>
+                                    <a href="tel:<?php echo esc_attr($settings['atria_phone']); ?>" style="color: #fff; text-decoration: none;"><?php echo esc_html($settings['atria_phone']); ?></a>
                                 </p>
                             <?php endif; ?>
                         </div>
