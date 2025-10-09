@@ -239,10 +239,14 @@ $header_mobile_nav_menu = wp_nav_menu($menu_args);
 			display: block;
 		}
 	}
+
+
 </style>
 
 <header id="site-header" class="headr site-header dynamic-header <?php echo esc_attr($header_class); ?>">
 	<div class="headr-container">
+		<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/styles.css">
+    
 		<div class="headr-logo site-branding show-<?php echo esc_attr(hello_elementor_get_setting('hello_header_logo_type')); ?>">
 			<?php if (has_custom_logo()) : ?>
 				<div class="site-logo">
