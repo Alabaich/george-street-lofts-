@@ -21,59 +21,7 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
   --Brown-bg: #4D4337;
 }
 
-@font-face {
-  font-family: "Albra Book TRIAL TRIAL";
-  src: url("./fonts/AlbraBookTRIAL-Regular.woff2") format("woff2"),
-    url("./fonts/AlbraBookTRIAL-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Albra Book TRIAL Semi TRIAL";
-  src: url("./fonts/AlbraBookTRIAL-Semi.woff2") format("woff2"),
-    url("./fonts/AlbraBookTRIAL-Semi.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Albra Book TRIAL Light TRIAL";
-  src: url("./fonts/AlbraBookTRIAL-Light.woff2") format("woff2"),
-    url("./fonts/AlbraBookTRIAL-Light.woff") format("woff");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Albra Book TRIAL Black TRIAL";
-  src: url("./fonts/AlbraBookTRIAL-Black.woff2") format("woff2"),
-    url("./fonts/AlbraBookTRIAL-Black.woff") format("woff");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Albra Book TRIAL Medium TRIAL";
-  src: url("./fonts/AlbraBookTRIAL-Medium.woff2") format("woff2"),
-    url("./fonts/AlbraBookTRIAL-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Albra Book TRIAL Bold TRIAL";
-  src: url("./fonts/AlbraBookTRIAL-Bold.woff2") format("woff2"),
-    url("./fonts/AlbraBookTRIAL-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 .pageWidth {
   width: 100%;
@@ -95,7 +43,7 @@ p {
 h1 {
   color: var(--Black, #32302f);
   text-align: center;
-  font-family: "Albra Book TRIAL";
+  font-family: "Cormorant", serif;
   font-size: 56px;
   font-style: normal;
   font-weight: 500;
@@ -106,17 +54,17 @@ h2 {
   color: var(--Black, #32302f);
   text-align: center;
   font-feature-settings: "salt" on;
-  font-family: "Albra Book TRIAL";
+  font-family: "Cormorant", serif;
   font-size: 48px;
   font-style: normal;
   font-weight: 500;
   text-transform: capitalize;
 }
 
-p.text {
+p {
   color: var(--Text-color, #5c5c5c);
   text-align: center;
-  font-family: Arial;
+  font-family: "Open Sans", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -124,7 +72,7 @@ p.text {
 }
 
 a {
-  font-family: "Albra Book TRIAL";
+  font-family: "Open Sans", sans-serif;
 }
 
 a.mainButton {
