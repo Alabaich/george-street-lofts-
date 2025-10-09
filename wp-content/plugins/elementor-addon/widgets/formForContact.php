@@ -198,13 +198,11 @@ class Elementor_formForContact extends \Elementor\Widget_Base
         ?>
         <style>
             .<?php echo esc_attr($widget_id); ?> {
-                font-family: sans-serif;
                 color: #333;
                 text-align: center;
             }
 
             .<?php echo esc_attr($widget_id); ?> .cfl-header h2 {
-                font-family: "Serif", "Times New Roman", serif;
                 font-size: 3rem;
                 font-weight: normal;
                 margin: 0 0 15px 0;
@@ -358,6 +356,15 @@ class Elementor_formForContact extends \Elementor\Widget_Base
 
             .cfl-main-content .wpforms-container .wpforms-field{
                 padding: 0 0 30px 0;
+            }
+
+            .cfl-main-content .wpforms-container form{
+                overflow: hidden;
+            }
+
+            .cfl-main-content .wpforms-container .wpforms-field-container {
+                position: relative;
+                overflow: hidden;
             }
         </style>
 
