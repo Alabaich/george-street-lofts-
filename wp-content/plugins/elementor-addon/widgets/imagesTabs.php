@@ -233,6 +233,22 @@ class Elementor_ImagesTabs extends \Elementor\Widget_Base
                 from { opacity: 0; transform: translateY(10px); }
                 to { opacity: 1; transform: translateY(0); }
             }
+
+            @media (max-width: 768px){
+                .imagesTabs .tabs-container{
+                    flex-direction: column;
+                    gap: 25px;
+                }
+
+                .imagesTabs-f137d2e .tabs-nav{
+                    flex-direction: row;
+                    overflow-x: scroll;
+                }
+            }
+
+            .imagesTabs .tabs-content-wrapper .content-description *{
+                color: #fff;
+            }
         </style>
 
         <div id="imagesTabs-<?php echo esc_attr($widget_id); ?>" class="imagesTabs pageWidth imagesTabs-<?php echo esc_attr($widget_id); ?>">

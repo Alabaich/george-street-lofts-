@@ -216,6 +216,22 @@ class Elementor_Features_Slider extends \Elementor\Widget_Base
                 line-height: 1.5;
                 margin: 0;
             }
+
+            @media (max-width: 768px){
+                .featuresSlider .features-header{
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 25px;
+                }
+
+                .featuresSlider .features-header *{
+                    text-align: center;
+                }
+
+                .featuresSlider-<?php echo esc_attr($widget_id); ?> .slider-card {
+    flex: 0 0 100%; /* Make each card take up the full width on mobile */
+}
+            }
         </style>
 
         <div id="featuresSlider-<?php echo esc_attr($widget_id); ?>" class="featuresSlider pageWidth featuresSlider-<?php echo esc_attr($widget_id); ?>">
@@ -256,46 +272,64 @@ class Elementor_Features_Slider extends \Elementor\Widget_Base
 
         <?php if ($card_count > 3) : ?>
         <script>
-            (function() {
-                const widgetContainer = document.querySelector('#featuresSlider-<?php echo esc_attr($widget_id); ?>');
-                if (!widgetContainer) return;
+(function() {
+    const widgetContainer = document.querySelector('#featuresSlider-<?php echo esc_attr($widget_id); ?>');
+    if (!widgetContainer) return;
 
-                const track = widgetContainer.querySelector('.slider-track');
-                const cards = widgetContainer.querySelectorAll('.slider-card');
-                const nextBtn = widgetContainer.querySelector('.slider-next');
-                const prevBtn = widgetContainer.querySelector('.slider-prev');
-                const cardCount = cards.length;
-                const slidesPerPage = 3;
-                let currentIndex = 0;
+    const track = widgetContainer.querySelector('.slider-track');
+    const cards = widgetContainer.querySelectorAll('.slider-card');
+    const nextBtn = widgetContainer.querySelector('.slider-next');
+    const prevBtn = widgetContainer.querySelector('.slider-prev');
+    const cardCount = cards.length;
+    let slidesPerView = 3; // Default value
+    let currentIndex = 0;
 
-                function updateSlider() {
-                    const offset = currentIndex * (100 / slidesPerPage);
-                    track.style.transform = `translateX(-${offset}%)`;
-                    updateNavButtons();
-                }
+    function updateSlidesPerView() {
+        if (window.innerWidth <= 768) {
+            slidesPerView = 1; // On mobile, show 1 slide
+        } else {
+            slidesPerView = 3; // On desktop, show 3 slides
+        }
+    }
 
-                function updateNavButtons() {
-                    prevBtn.disabled = currentIndex === 0;
-                    nextBtn.disabled = currentIndex >= cardCount - slidesPerPage;
-                }
-                
-                nextBtn.addEventListener('click', function() {
-                    if (currentIndex < cardCount - slidesPerPage) {
-                        currentIndex++;
-                        updateSlider();
-                    }
-                });
+    function updateSlider() {
+        const cardWidth = 100 / slidesPerView;
+        const offset = currentIndex * cardWidth;
+        track.style.transform = `translateX(-${offset}%)`;
+        updateNavButtons();
+    }
 
-                prevBtn.addEventListener('click', function() {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        updateSlider();
-                    }
-                });
-                
-                // Initial state
-                updateNavButtons();
-            })();
+    function updateNavButtons() {
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= cardCount - slidesPerView;
+    }
+    
+    nextBtn.addEventListener('click', function() {
+        if (currentIndex < cardCount - slidesPerView) {
+            currentIndex++;
+            updateSlider();
+        }
+    });
+
+    prevBtn.addEventListener('click', function() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+
+    // Listen for window resize to adjust the slider
+    window.addEventListener('resize', function() {
+        updateSlidesPerView();
+        // Reset slider to the beginning to avoid weird positioning
+        currentIndex = 0;
+        updateSlider();
+    });
+    
+    // Initial setup
+    updateSlidesPerView();
+    updateSlider();
+})();
         </script>
         <?php endif; ?>
         <?php

@@ -178,12 +178,6 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 text-align: left;
             }
 
-            .switchSideImage .heroText p {
-                color: var(--black);
-                font-size: 1.25rem;
-                font-weight: 300;
-            }
-
             .switchSideImage .heroSectionTwo {
                 display: flex;
                 justify-content: space-between;
@@ -248,22 +242,21 @@ class Elementor_switchSideImage extends \Elementor\Widget_Base
                 background-color: #0056b3;
             }
 
-            @media screen and (max-width: 767px) {
+            @media screen and (max-width: 768px) {
 
-                .heroSection,
-                .heroSection.reverse-order {
+                .switchSideImage  {
                     flex-direction: column;
                     min-height: auto;
                     padding: 10px;
                     gap: 20px;
                 }
 
-                .heroSection img {
+                .switchSideImage  img {
                     width: 100%;
                     height: auto;
                 }
 
-                .heroText {
+                .switchSideImage .heroText {
                     padding: 0;
                     width: 100%;
                     max-width: 100%;

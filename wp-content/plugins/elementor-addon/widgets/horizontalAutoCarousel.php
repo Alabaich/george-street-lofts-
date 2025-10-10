@@ -86,7 +86,6 @@ class Elementor_HorizontalAutoCarousel extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         ?>
         <style>
-
             .horizontalAutoCarousel {
                 width: 100%;
                 overflow: hidden;
@@ -130,6 +129,15 @@ class Elementor_HorizontalAutoCarousel extends \Elementor\Widget_Base
             .horizontalAutoCarousel:hover .carousel-track {
                 animation-play-state: paused;
             }
+
+            @media (max-width: 768px) {
+                .horizontalAutoCarousel .carousel-item {
+                    height: 200px;
+                    width: auto;
+                    object-fit: contain;
+                    max-width: fit-content;
+                }
+            }
         </style>
 
         <section class="horizontalAutoCarousel pageWidth">
@@ -149,22 +157,22 @@ class Elementor_HorizontalAutoCarousel extends \Elementor\Widget_Base
             </div>
         </section>
 
-            <script>
-        // --- ЛОГІКА НА JAVASCRIPT ---
+        <script>
+            // --- ЛОГІКА НА JAVASCRIPT ---
 
-        const track = document.querySelector('.carousel-track');
+            const track = document.querySelector('.carousel-track');
 
-        // Перевіряємо, чи є зображення в треку, перед тим як їх дублювати
-        if (track.children.length > 0) {
-            // Дублюємо всі існуючі зображення (які ви додали в HTML) для безшовного ефекту.
-            const originalItems = Array.from(track.children);
-            originalItems.forEach(item => {
-                const clone = item.cloneNode(true);
-                track.appendChild(clone);
-            });
-        }
-        
-    </script>
+            // Перевіряємо, чи є зображення в треку, перед тим як їх дублювати
+            if (track.children.length > 0) {
+                // Дублюємо всі існуючі зображення (які ви додали в HTML) для безшовного ефекту.
+                const originalItems = Array.from(track.children);
+                originalItems.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    track.appendChild(clone);
+                });
+            }
+
+        </script>
         <?php
     }
 }

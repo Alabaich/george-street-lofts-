@@ -150,6 +150,23 @@ class Elementor_SplitHeroSection extends \Elementor\Widget_Base
                 flex-direction: column;
                 gap: 15px;
             }
+
+            .splitHeroSection *{
+                text-align: left;
+            }
+
+            @media (max-width: 768px) {
+                .splitHeroSection {
+                    flex-direction: column;
+                    gap:25px;
+                }
+
+                .splitHeroSection .titles,
+                .splitHeroSection .text{
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
         </style>
 
 
@@ -161,7 +178,7 @@ class Elementor_SplitHeroSection extends \Elementor\Widget_Base
         }
         ?> pageWidth">
             <div class="titles left">
-                <p style="text-align: left;">
+                <p style="text-align: left;" class="upperTitle">
                     <?php echo $settings['upperTitle']; ?>
                 </p>
                 <h2 style="text-align: left;">

@@ -35,7 +35,7 @@ class Elementor_SwitchSideDropdowns extends \Elementor\Widget_Base
         $this->add_control(
             'upperTitle',
             [
-                'label' => esc_html__('Title', 'elementor-addon'),
+                'label' => esc_html__('Upper Title', 'elementor-addon'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
             ]
         );
@@ -81,7 +81,7 @@ class Elementor_SwitchSideDropdowns extends \Elementor\Widget_Base
             'item_title',
             [
                 'label' => esc_html__('Title', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'type' => \Elementor\Controls_Manager::TEXT,
                 'default' => esc_html__('This is a Title of the item.', 'elementor-addon'),
             ]
         );
@@ -90,7 +90,7 @@ class Elementor_SwitchSideDropdowns extends \Elementor\Widget_Base
             'item_description',
             [
                 'label' => esc_html__('Description', 'elementor-addon'),
-                'type' => \Elementor\Controls_Manager::TEXTAREA,
+                'type' => \Elementor\Controls_Manager::WYSIWYG,
                 'default' => esc_html__('This is a description of a key advantage.', 'elementor-addon'),
             ]
         );
@@ -137,7 +137,7 @@ class Elementor_SwitchSideDropdowns extends \Elementor\Widget_Base
                 gap: 15px;
             }
 
-            .switchSideDropdownsText{
+            .switchSideDropdownsText {
                 display: flex;
                 justify-content: start;
                 align-items: start;
@@ -153,26 +153,27 @@ class Elementor_SwitchSideDropdowns extends \Elementor\Widget_Base
             }
 
             .accordion-title {
-                color: #333;
                 cursor: pointer;
                 padding: 18px 20px;
+                color: #625444;
                 width: 100%;
                 border: none;
                 text-align: left;
                 outline: none;
-                font-size: 1.8rem;
-                font-weight: 500;
+                font-size: 1.4rem;
+                font-weight: 400;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 transition: background-color 0.3s ease;
+                font-family: "Cormorant", serif;
             }
 
             .accordion-title:hover,
             .accordion-title:active,
             .accordion-title:focus {
                 background: #e5dcd1ff;
-                color: #333;
+                color: #625444;
                 border-radius: 12px;
             }
 
@@ -180,38 +181,60 @@ class Elementor_SwitchSideDropdowns extends \Elementor\Widget_Base
             .accordion-title::after {
                 content: '+';
                 font-size: 20px;
-                color: #888;
+                color: #625444;
                 transition: transform 0.3s ease-in-out;
             }
 
             .accordion-title.active {
-                font-weight: 600;
+                font-weight: 400;
             }
 
-            .accordion-content {
-                background-color: white;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out;
-                max-height: 0;
+            .accordion-item .accordion-content *{
+                text-align: left;
             }
 
-            .accordion-content p {
-                margin: 0;
-                padding: 20px;
-                font-size: 15px;
-                line-height: 1.6;
-                color: #555;
+            .accordion-item .accordion-content .accordion-content-inner{
+                padding: 25px;
             }
 
-                    .accordion-title.active::after {
-            content: '−'; /* Змінюємо плюсик на мінус */
-            transform: rotate(180deg);
+        .accordion-item .accordion-content {
+            /* Copied rules from the 'p' selector and combined them here */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+
+            /* Original rules are kept */
+            margin: 0;
+            padding: 0; /* Adjusted padding for smooth collapse */
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            text-align: left;
         }
+
+            .accordion-title.active::after {
+                content: '−';
+                /* Змінюємо плюсик на мінус */
+                transform: rotate(180deg);
+            }
+
+            @media (max-width: 768px) {
+                .switchSideDropdowns{
+                    flex-direction: column;
+                    gap: 25px;
+                }
+
+                .switchSideDropdownsText,
+                .accordion-container{
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
         </style>
 
         <section class="switchSideDropdowns pageWidth">
             <div class="switchSideDropdownsText">
-                <p><?php echo $settings['upperTitle']; ?></p>
+                <p class="upperTitle"><?php echo $settings['upperTitle']; ?></p>
                 <h2 style="text-align: left;">
                     <?php echo $settings['title']; ?>
                 </h2>
@@ -238,7 +261,7 @@ class Elementor_SwitchSideDropdowns extends \Elementor\Widget_Base
                         <div class="accordion-item">
                             <button class="accordion-title"><?php echo $item_title; ?></button>
                             <div class="accordion-content">
-                                <p><?php echo $item_description; ?></p>
+                               <div class="accordion-content-inner"><?php echo $item_description; ?></div>
                             </div>
                         </div>
                         <?php
