@@ -145,6 +145,36 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+        
+        $this->start_controls_section(
+            'main_button_section',
+            [
+                'label' => esc_html__('Main Button', 'elementor-addon'),
+                'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'main_button_text',
+            [
+                'label'       => esc_html__('Button Text', 'elementor-addon'),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'default'     => esc_html__('View Suites', 'elementor-addon'),
+                'placeholder' => esc_html__('e.g., View All Units', 'elementor-addon'),
+            ]
+        );
+
+        $this->add_control(
+            'main_button_link',
+            [
+                'label' => esc_html__('Button Link', 'elementor-addon'),
+                'type'  => \Elementor\Controls_Manager::URL,
+                'options' => ['url'],
+                'default' => ['url' => '#'],
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     protected function render()
@@ -153,6 +183,11 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
         $widget_id = $this->get_id();
         $button_color = '#A87F58';
         $button_hover_color = '#7C5E45';
+
+        $main_button_text = !empty($settings['main_button_text']) ? $settings['main_button_text'] : esc_html__('View Suites', 'elementor-addon');
+        $main_button_link = $settings['main_button_link']['url'] ?? '#';
+        $main_button_target = !empty($settings['main_button_link']['is_external']) ? ' target="_blank"' : '';
+        $main_button_nofollow = !empty($settings['main_button_link']['nofollow']) ? ' rel="nofollow"' : '';
 ?>
 
         <style>
@@ -163,7 +198,6 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
                 gap: 50px;
                 position: relative;
                 align-items: center;
-                /* HIDE HORIZONTAL SCROLLBAR */
                 overflow-x: hidden;
             }
 
@@ -232,7 +266,6 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
             .floor-plan-section-<?php echo esc_attr($widget_id); ?> .neighbourhood-slider-next {
                 position: absolute;
                 top: 50%;
-                /* Reset transform to only translateY */
                 transform: translateY(-50%); 
                 z-index: 10;
                 width: 48px;
@@ -250,19 +283,15 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
                 font-weight: bold;
             }
             
-            /* CORRECTED STYLES FOR NAVIGATION BUTTONS */
             .floor-plan-section-<?php echo esc_attr($widget_id); ?> .neighbourhood-slider-prev {
                 left: 0;
-                /* Use translate to move the button outside without causing overflow/scroll */
                 transform: translate(-25%, -50%); 
             }
 
             .floor-plan-section-<?php echo esc_attr($widget_id); ?> .neighbourhood-slider-next {
                 right: 0;
-                /* Use translate to move the button outside without causing overflow/scroll */
                 transform: translate(25%, -50%); 
             }
-            /* END CORRECTED STYLES */
 
             .floor-plan-section-<?php echo esc_attr($widget_id); ?> .neighbourhood-slider-prev svg path,
             .floor-plan-section-<?php echo esc_attr($widget_id); ?> .neighbourhood-slider-next svg path {
@@ -281,8 +310,6 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
             .floor-plan-section-<?php echo esc_attr($widget_id); ?> .neighbourhood-slider-next:hover svg path {
                 fill: #fff;
             }
-
-            /* REMOVED .floor-plan-slider-pagination AND .splide-bullet STYLES */
 
             @media (min-width: 769px) {
                 .floor-plan-slider-<?php echo esc_attr($widget_id); ?> {
@@ -377,9 +404,11 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
                 </div>
             </div>
 
-            <a href="#" class="mainButton">
-                <?php echo esc_html__('View Suites', 'elementor-addon'); ?>
-            </a>
+            <?php if (!empty($main_button_text) && !empty($main_button_link)) : ?>
+                <a href="<?php echo esc_url($main_button_link); ?>" class="mainButton" <?php echo esc_attr($main_button_target . $main_button_nofollow); ?>>
+                    <?php echo esc_html($main_button_text); ?>
+                </a>
+            <?php endif; ?>
         </div>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
@@ -405,10 +434,8 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
                         perPage: 3,
                         perMove: 1,
                         gap: '30px',
-                        // Smooth animation speed
                         speed: 800,
                         arrows: false,
-                        // Set pagination to false as requested
                         pagination: false,
                         breakpoints: {
                             1024: {
@@ -424,7 +451,6 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
 
                     var prevButton = document.querySelector('.floor-plan-slider-prev-' + widgetId);
                     var nextButton = document.querySelector('.floor-plan-slider-next-' + widgetId);
-                    // Removed pagination variable
 
                     if (prevButton) {
                         prevButton.addEventListener('click', (e) => {
@@ -438,8 +464,6 @@ class Elementor_FloorPlanSection extends \Elementor\Widget_Base
                             splide.go('>');
                         });
                     }
-
-                    // Removed renderPagination function and splide.on('mounted move', ...)
                 };
 
                 $(window).on('elementor/frontend/init', function() {

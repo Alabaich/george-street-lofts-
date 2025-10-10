@@ -295,7 +295,7 @@ class Elementor_AtriaDevelopmentSection extends \Elementor\Widget_Base
 
             .atria-slide-image {
                 width: 100%;
-                height: 400px;
+                height: 400px !important;
                 object-fit: cover;
                 display: block;
             }
