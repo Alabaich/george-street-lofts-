@@ -179,16 +179,14 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                 $first_tab_slug = $tab['tab_slug'];
             }
             if (!empty($tab['tab_items_list'])) {
-                // Remove duplicates when merging into 'All' tab, based on name and location
                 foreach ($tab['tab_items_list'] as $item) {
                     $dev_id = md5($item['dev_name'] . $item['dev_location']);
                     $all_items[$dev_id] = $item;
                 }
             }
         }
-        $all_items = array_values($all_items); // Reindex array after de-duplication
+        $all_items = array_values($all_items);
 
-        // SVG code for the location pin
         $location_pin_svg = '
             <svg class="atria-dev-location-pin" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_737_1378)">
@@ -382,6 +380,7 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                 <div id="all" class="atria-tab-content active">
                     <?php
                     foreach ($all_items as $item) :
+                        $display_button = !empty($item['dev_button_text']) || (!empty($item['dev_button_link']['url']) && $item['dev_button_link']['url'] !== '#');
                     ?>
                         <div class="atria-development-card">
                             <div class="atria-dev-image-wrap">
@@ -397,15 +396,18 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                                 </p>
                                 <p class="atria-dev-description"><?php echo esc_html($item['dev_description']); ?></p>
 
-                                <?php
-                                $button_class = ($item['dev_button_text'] === 'Coming Soon') ? 'coming' : 'visit';
-                                $button_link = ($button_class === 'visit' && $item['dev_button_link']['url']) ? esc_url($item['dev_button_link']['url']) : '#';
-                                $target = $item['dev_button_link']['is_external'] ? ' target="_blank"' : '';
-                                $nofollow = $item['dev_button_link']['nofollow'] ? ' rel="nofollow"' : '';
-                                ?>
-                                <a href="<?php echo $button_link; ?>" class="atria-dev-button mainButton <?php echo $button_class; ?>" <?php echo $target . $nofollow; ?>>
-                                    <?php echo esc_html($item['dev_button_text']); ?>
-                                </a>
+                                <?php if ($display_button) : ?>
+                                    <?php
+                                    $button_text = esc_html($item['dev_button_text']);
+                                    $button_class = ($button_text === 'Coming Soon') ? 'coming' : 'visit';
+                                    $button_link = ($button_class === 'visit' && $item['dev_button_link']['url']) ? esc_url($item['dev_button_link']['url']) : '#';
+                                    $target = $item['dev_button_link']['is_external'] ? ' target="_blank"' : '';
+                                    $nofollow = $item['dev_button_link']['nofollow'] ? ' rel="nofollow"' : '';
+                                    ?>
+                                    <a href="<?php echo $button_link; ?>" class="atria-dev-button mainButton <?php echo $button_class; ?>" <?php echo $target . $nofollow; ?>>
+                                        <?php echo $button_text; ?>
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -414,7 +416,9 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                 <?php foreach ($tabs as $tab) : ?>
                     <div id="<?php echo esc_attr($tab['tab_slug']); ?>" class="atria-tab-content">
                         <?php if (!empty($tab['tab_items_list'])) : ?>
-                            <?php foreach ($tab['tab_items_list'] as $item) : ?>
+                            <?php foreach ($tab['tab_items_list'] as $item) :
+                                $display_button = !empty($item['dev_button_text']) || (!empty($item['dev_button_link']['url']) && $item['dev_button_link']['url'] !== '#');
+                            ?>
                                 <div class="atria-development-card">
                                     <div class="atria-dev-image-wrap">
                                         <?php if ($item['dev_image']['url']) : ?>
@@ -430,15 +434,18 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
 
                                         <p class="atria-dev-description"><?php echo esc_html($item['dev_description']); ?></p>
 
-                                        <?php
-                                        $button_class = ($item['dev_button_text'] === 'Coming Soon') ? 'coming' : 'visit';
-                                        $button_link = ($button_class === 'visit' && $item['dev_button_link']['url']) ? esc_url($item['dev_button_link']['url']) : '#';
-                                        $target = $item['dev_button_link']['is_external'] ? ' target="_blank"' : '';
-                                        $nofollow = $item['dev_button_link']['nofollow'] ? ' rel="nofollow"' : '';
-                                        ?>
-                                        <a href="<?php echo $button_link; ?>" class="atria-dev-button <?php echo $button_class; ?>" <?php echo $target . $nofollow; ?>>
-                                            <?php echo esc_html($item['dev_button_text']); ?>
-                                        </a>
+                                        <?php if ($display_button) : ?>
+                                            <?php
+                                            $button_text = esc_html($item['dev_button_text']);
+                                            $button_class = ($button_text === 'Coming Soon') ? 'coming' : 'visit';
+                                            $button_link = ($button_class === 'visit' && $item['dev_button_link']['url']) ? esc_url($item['dev_button_link']['url']) : '#';
+                                            $target = $item['dev_button_link']['is_external'] ? ' target="_blank"' : '';
+                                            $nofollow = $item['dev_button_link']['nofollow'] ? ' rel="nofollow"' : '';
+                                            ?>
+                                            <a href="<?php echo $button_link; ?>" class="atria-dev-button <?php echo $button_class; ?>" <?php echo $target . $nofollow; ?>>
+                                                <?php echo $button_text; ?>
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -453,7 +460,6 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const container = document.querySelector('.elementor-widget-DevelopmentsPortfolio');
-                // Use closest to find the container in case the render is inside an AJAX call or other wrapper
                 if (!container) return;
 
                 const tabs = container.querySelectorAll('.atria-tab-button');
@@ -482,8 +488,6 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                     });
                 });
 
-                // For Elementor Live Preview compatibility:
-                // If Elementor is active, run the script logic immediately upon insertion
                 if (window.elementorFrontend) {
                     window.elementorFrontend.hooks.addAction('frontend/element_ready/DevelopmentsPortfolio.default', function($scope) {
                         const widgetContainer = $scope[0];
@@ -500,7 +504,6 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                     });
                 }
 
-                // Default activation for initial load
                 activateTab('all');
             });
         </script>
