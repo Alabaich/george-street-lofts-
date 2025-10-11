@@ -1,38 +1,38 @@
 <?php
-/**
- * The template for displaying archive pages
- */
 
 get_header();
 
-// Helper function to get reading time. Make sure this function is in your functions.php
 if (!function_exists('get_post_reading_time')) {
-    function get_post_reading_time($post_id) {
+    function get_post_reading_time($post_id)
+    {
         $content = get_post_field('post_content', $post_id);
         $word_count = str_word_count(strip_tags($content));
-        $reading_time = ceil($word_count / 200); // Average 200 words per minute
+        $reading_time = ceil($word_count / 200);
         return $reading_time . ' min read';
     }
 }
 ?>
 
 <style>
-    .blog-archive-container {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 0 15px;
-        font-family: sans-serif;
-    }
+    /* УДАЛЕНО: .blog-archive-container - по вашему запросу */
+    
     .archive-header {
         text-align: center;
         margin-bottom: 40px;
     }
+
     .archive-title {
-        font-family: "Serif", "Times New Roman", serif;
-        font-size: 3rem;
-        font-weight: normal;
+        font-family: "Cormorant", serif;
+        color: var(--Black, #32302F);
+        font-size: 56px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 110%;
+        letter-spacing: -0.56px;
+        text-transform: capitalize;
         margin: 0 0 20px 0;
     }
+
     .category-filters {
         display: flex;
         justify-content: center;
@@ -40,19 +40,23 @@ if (!function_exists('get_post_reading_time')) {
         list-style: none;
         padding: 0;
         margin: 0;
+        flex-wrap: wrap;
     }
+
     .category-filters a {
         display: block;
         padding: 8px 20px;
         background-color: #f0f0f0;
         color: #555;
         text-decoration: none;
-        border-radius: 20px;
+        border-radius: 4px;
         transition: background-color 0.3s, color 0.3s;
+        white-space: nowrap;
     }
+
     .category-filters a:hover,
     .category-filters .current-cat a {
-        background-color: #c5a47e;
+        background-color: #A67131;
         color: #fff;
     }
 
@@ -61,17 +65,21 @@ if (!function_exists('get_post_reading_time')) {
         grid-template-columns: repeat(3, 1fr);
         gap: 30px;
     }
+
     .blog-card {
         text-align: left;
+        overflow-wrap: break-word;
     }
-    /* Special style for the first post on the first page */
+
     .blog-card.featured-post {
-        grid-column: 1 / -1; /* Takes full width */
+        grid-column: 1 / -1;
         text-align: left;
     }
+
     .blog-card.featured-post .post-thumbnail-link {
         height: 400px;
     }
+
     .blog-card.featured-post .post-content {
         padding: 20px 0;
     }
@@ -83,44 +91,56 @@ if (!function_exists('get_post_reading_time')) {
         margin-bottom: 15px;
         height: 250px;
     }
+
     .post-thumbnail {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.4s ease;
     }
+
     .post-thumbnail-link:hover .post-thumbnail {
         transform: scale(1.05);
     }
+
     .post-meta {
         font-size: 0.85rem;
         color: #888;
         margin-bottom: 10px;
     }
+
     .post-title {
-        font-family: "Serif", "Times New Roman", serif;
-        font-size: 1.4rem;
-        font-weight: normal;
+        font-family: "Cormorant", serif;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 500;
         margin: 0 0 15px 0;
+        text-align: left;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
+
     .post-title a {
         color: #333;
         text-decoration: none;
+        text-align: left;
     }
+
     .post-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 0.9rem;
         color: #777;
+        min-width: 0;
     }
+
     .read-more-link {
         color: #333;
         text-decoration: none;
         font-weight: bold;
     }
 
-    /* Pagination */
     .pagination {
         margin-top: 50px;
         display: flex;
@@ -128,10 +148,12 @@ if (!function_exists('get_post_reading_time')) {
         align-items: center;
         gap: 10px;
     }
+
     .pagination .nav-links {
         display: flex;
         gap: 10px;
     }
+
     .pagination .page-numbers {
         padding: 8px 14px;
         border: 1px solid #ddd;
@@ -139,16 +161,50 @@ if (!function_exists('get_post_reading_time')) {
         text-decoration: none;
         color: #555;
     }
+
     .pagination .page-numbers.current,
     .pagination .page-numbers:hover {
         background-color: #c5a47e;
         color: #fff;
         border-color: #c5a47e;
     }
+    
+    @media (max-width: 992px) {
+        .posts-grid-wrapper {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
 
+        .blog-card.featured-post {
+            grid-column: 1 / -1;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .archive-title {
+            font-size: 40px;
+        }
+
+        .posts-grid-wrapper {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .blog-card.featured-post {
+            grid-column: 1; 
+        }
+
+        .blog-card.featured-post .post-thumbnail-link {
+            height: 250px;
+        }
+
+        .post-thumbnail-link {
+            height: 200px;
+        }
+    }
 </style>
 
-<div id="primary" class="content-area">
+<div id="primary" class="pageWidth content-area">
     <main id="main" class="site-main">
         <div class="blog-archive-container">
 
@@ -187,8 +243,7 @@ if (!function_exists('get_post_reading_time')) {
                     $post_counter = 0;
                     while (have_posts()) :
                         the_post();
-                        
-                        // Check if it's the first post on the first page
+
                         $is_featured = ($post_counter === 0 && !is_paged());
                         $card_class = $is_featured ? 'blog-card featured-post' : 'blog-card';
                     ?>
@@ -219,7 +274,6 @@ if (!function_exists('get_post_reading_time')) {
                 </div>
 
                 <?php
-                // Pagination
                 the_posts_pagination([
                     'mid_size'  => 2,
                     'prev_text' => '&lt;',

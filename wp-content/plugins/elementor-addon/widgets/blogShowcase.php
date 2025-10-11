@@ -284,13 +284,14 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
             }
 
             .atria-main-post-title {
-                color: var(--Black, #32302F);
                 font-family: "Cormorant", serif;
                 font-size: 28px;
                 font-style: normal;
                 font-weight: 500;
-                line-height: 130%;
-                text-transform: capitalize;
+                margin: 0 0 15px 0;
+                text-align: left;
+                overflow-wrap: break-word;
+                word-break: break-word;
             }
 
             .atria-read-time {
@@ -363,10 +364,14 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
             }
 
             .atria-small-post-title {
-                font-size: 16px;
-                font-weight: bold;
-                margin: 0 0 5px 0;
-                line-height: 1.4;
+                font-family: "Cormorant", serif;
+                font-size: 28px;
+                font-style: normal;
+                font-weight: 500;
+                margin: 0 0 15px 0;
+                text-align: left;
+                overflow-wrap: break-word;
+                word-break: break-word;
             }
 
             .atria-footer {
@@ -445,7 +450,7 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
             }
         </style>
 
-        <section class="atria-blog-showcase pageWidth elementor-widget-blog-showcase-<?php echo esc_attr($widget_id); ?>">
+        <section class="pageWidth atria-blog-showcase pageWidth elementor-widget-blog-showcase-<?php echo esc_attr($widget_id); ?>">
             <div class="atria-blog-header">
                 <h2 class="atria-blog-title"><?php echo esc_html($settings['main_title']); ?></h2>
             </div>
@@ -493,7 +498,7 @@ class Elementor_BlogShowcase extends \Elementor\Widget_Base
                             echo '<img src="' . esc_url($post['image_url']) . '" alt="' . esc_attr($post['title']) . '" class="atria-small-post-image">';
                             echo '</div>';
                             echo '<p class="atria-post-date">' . esc_html($post['date']) . '</p>';
-                            echo '<h4 class="atria-small-post-title">' . esc_html($post['title']) . '</h4>';
+                            echo '<h3 class="atria-small-post-title">' . esc_html($post['title']) . '</h3>';
                             echo '<span class="atria-read-time">' . esc_html($post['read_time']) . ' ' . esc_html($settings['read_time_label']) . '</span>';
                             echo '<span class="atria-read-more">Read Now' . $svg_arrow . '</span>';
                             echo '</a>';

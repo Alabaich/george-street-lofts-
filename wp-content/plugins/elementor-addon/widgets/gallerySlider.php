@@ -139,8 +139,6 @@ class Elementor_GallerySlider extends \Elementor\Widget_Base
                 margin-bottom: 10px;
             }
             .cityLifeGallery-<?php echo esc_attr($widget_id); ?> .gallery-header-title {
-                font-family: "Serif", "Times New Roman", serif;
-                font-size: 2.8rem;
                 font-weight: normal;
                 margin: 0 auto 40px auto;
             }

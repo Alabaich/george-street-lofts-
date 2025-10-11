@@ -3,34 +3,28 @@
 class Elementor_GalleryGrid extends \Elementor\Widget_Base
 {
 
-    // Widget Name
     public function get_name()
     {
         return 'galleryGrid';
     }
 
-    // Widget Title
     public function get_title()
     {
         return esc_html__('Gallery Grid', 'elementor-addon');
     }
 
-    // Widget Icon
     public function get_icon()
     {
         return 'eicon-gallery-justified';
     }
 
-    // Widget Categories
     public function get_categories()
     {
         return ['basic'];
     }
 
-    // Register Widget Controls
     protected function register_controls()
     {
-        // Section: General Titles
         $this->start_controls_section(
             'section_general',
             [
@@ -60,7 +54,6 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
 
         $this->end_controls_section();
 
-        // Section: Repeater Images
         $this->start_controls_section(
             'section_gallery_images',
             [
@@ -98,7 +91,6 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
         $this->end_controls_section();
     }
 
-    // Render Widget Output
     protected function render()
     {
         $settings = $this->get_settings_for_display();
@@ -118,8 +110,6 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
                 margin-bottom: 10px;
             }
             .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-header-title {
-                font-family: "Serif", "Times New Roman", serif;
-                font-size: 2.8rem;
                 font-weight: normal;
                 margin: 0 auto 40px auto;
             }
@@ -146,7 +136,35 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
                 transform: scale(1.05);
             }
 
-            /* Modal Styles */
+            @media (max-width: 767px) {
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-header-title {
+                    margin: 0 auto 25px auto;
+                }
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 8px;
+                }
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-image {
+                    height: 180px;
+                }
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-header-upper-title {
+                    font-size: 0.8rem;
+                    margin-bottom: 8px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-grid {
+                    gap: 6px;
+                }
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-image {
+                    height: 150px;
+                }
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .gallery-header-title {
+                    margin: 0 auto 20px auto;
+                }
+            }
+
             .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .modal-lightbox {
                 position: fixed;
                 top: 0;
@@ -186,9 +204,21 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
                 cursor: pointer;
                 line-height: 1;
             }
+
+            @media (max-width: 767px) {
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .modal-close {
+                    top: 15px;
+                    right: 20px;
+                    font-size: 2rem;
+                }
+                .outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?> .modal-content {
+                    max-width: 95%;
+                    max-height: 95%;
+                }
+            }
         </style>
 
-        <div id="outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?>" class="outdoorSpacesGallery outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?>">
+        <div id="outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?>" class="pageWidth outdoorSpacesGallery outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?>">
             <p class="gallery-header-upper-title"><?php echo esc_html($settings['upper_title']); ?></p>
             <h2 class="gallery-header-title"><?php echo esc_html($settings['title']); ?></h2>
 
@@ -203,7 +233,6 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
                 <?php endforeach; ?>
             </div>
             
-            <!-- Modal HTML Structure specific to this widget -->
             <div class="modal-lightbox">
                 <span class="modal-close">&times;</span>
                 <div class="modal-content">
@@ -215,11 +244,9 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
 
         <script>
             (function() {
-                // Isolate the script to this specific widget instance
                 const widget = document.querySelector('#outdoorSpacesGallery-<?php echo esc_attr($widget_id); ?>');
                 if (!widget) return;
 
-                // Select modal elements that belong ONLY to this widget
                 const modal = widget.querySelector('.modal-lightbox');
                 const modalImage = widget.querySelector('.modal-image');
                 const closeModalBtn = widget.querySelector('.modal-close');
@@ -238,7 +265,6 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
 
                 function closeModal() {
                     modal.classList.remove('active');
-                    // Clear src after fade out to prevent image flash on next open
                     setTimeout(() => {
                          modalImage.setAttribute('src', '');
                     }, 300);
@@ -247,7 +273,6 @@ class Elementor_GalleryGrid extends \Elementor\Widget_Base
                 closeModalBtn.addEventListener('click', closeModal);
 
                 modal.addEventListener('click', (e) => {
-                    // Close only if the user clicks on the dark background, not the image itself
                     if (e.target === modal) {
                         closeModal();
                     }

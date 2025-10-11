@@ -151,6 +151,7 @@ get_header();
     background: #f9f9f9;
     padding: 20px;
     border: 1px solid #eee;
+    border-radius: 8px;
 }
 
 .widget-title {
