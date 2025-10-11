@@ -442,7 +442,7 @@ class Elementor_DevelopmentsPortfolioWidget extends \Elementor\Widget_Base
                                             $target = $item['dev_button_link']['is_external'] ? ' target="_blank"' : '';
                                             $nofollow = $item['dev_button_link']['nofollow'] ? ' rel="nofollow"' : '';
                                             ?>
-                                            <a href="<?php echo $button_link; ?>" class="atria-dev-button <?php echo $button_class; ?>" <?php echo $target . $nofollow; ?>>
+                                            <a href="<?php echo $button_link; ?>" class="atria-dev-button mainButton <?php echo $button_class; ?>" <?php echo $target . $nofollow; ?>>
                                                 <?php echo $button_text; ?>
                                             </a>
                                         <?php endif; ?>
